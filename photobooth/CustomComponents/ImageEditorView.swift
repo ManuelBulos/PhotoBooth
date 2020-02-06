@@ -41,7 +41,9 @@ class ImageEditorView: NSView {
         removeDrawings()
     }
 
+    /// Clears canvas
     func removeDrawings() {}
 
+    /// Undos last continuous pencil strike
     func undoLastDrawing() {}
 }

@@ -24,10 +24,10 @@ class CameraToolBar: NSView {
     // MARK: - UI Elements
 
     private lazy var stackView: NSStackView = {
-        let stackView = NSStackView(views: [newFileButton, saveFileButton, takeCameraSnapshotButton, openImageButton, undoButton, colorPickerButton])
-        stackView.spacing = 12
-        stackView.distribution = .fillEqually
+        let stackView = NSStackView(views: [takeCameraSnapshotButton, openImageButton, newFileButton, saveFileButton, undoButton, colorPickerButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.spacing = 12
         return stackView
     }()
     
@@ -73,6 +73,10 @@ class CameraToolBar: NSView {
         return colorPickerButton
     }()
 
+    // MARK: - Private Properties
+
+    private let stackViewPadding: CGFloat = 12
+
     // MARK: - Public Properties
 
     weak var delegate: CameraToolBarDelegate?
@@ -91,37 +95,30 @@ class CameraToolBar: NSView {
     }
 
     private func commonInit(hideEditingButtons: Bool = true) {
-        addSubviews()
-        setEditingButtonsStatus(hidden: hideEditingButtons)
+        addSubview(stackView)
+        self.hideEditingButtons(hideEditingButtons)
     }
 
     override func updateConstraints() {
         super.updateConstraints()
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
-            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: stackViewPadding),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: stackViewPadding),
+            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -stackViewPadding),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -stackViewPadding),
         ])
-    }
-
-    // MARK: - Private Functions
-
-    private func addSubviews() {
-        addSubview(stackView)
     }
 
     // MARK: - Public Functions
 
-    func setEditingButtonsStatus(hidden: Bool) {
-        // Editing buttons should hide when taking a picture
-        undoButton.isHidden = hidden
-        newFileButton.isHidden = hidden
-        saveFileButton.isHidden = hidden
-        colorPickerButton.isHidden = hidden
+    func hideEditingButtons(_ hideEditingButtons: Bool) {
+        undoButton.isHidden = hideEditingButtons
+        newFileButton.isHidden = hideEditingButtons
+        saveFileButton.isHidden = hideEditingButtons
+        colorPickerButton.isHidden = hideEditingButtons
 
-        openImageButton.isHidden = !hidden
-        takeCameraSnapshotButton.isHidden = !hidden
+        openImageButton.isHidden = !hideEditingButtons
+        takeCameraSnapshotButton.isHidden = !hideEditingButtons
     }
 
     // MARK: - User Interactions (Button clicks)

@@ -12,6 +12,7 @@ import AVFoundation
 /// CameraPreview class delegate
 protocol CameraPreviewDelegate: AnyObject {
     func didTakeSnapshot(_ snapshot: NSImage)
+    func didEncounterError(_ error: Error)
 }
 
 /// NSView that holds an AVCaptureVideoPreviewLayer
@@ -110,7 +111,7 @@ class CameraPreview: NSView {
         self.captureSession.stopRunning()
     }
 
-    /// Enables a snapshot of the current AVCaptureSession
+    /// Enables a snapshot from the current AVCaptureSession
     func takeSnapshot() {
         self.shouldCaptureSnapshot = true
     }
@@ -129,7 +130,7 @@ class CameraPreview: NSView {
                     self.cameraView.layer?.addSublayer(previewLayer)
                     self.captureSession.startRunning()
                 } catch {
-                    NSAlert(error: error).runModal()
+                    self.delegate?.didEncounterError(error)
                 }
             }
         }

@@ -10,20 +10,18 @@ import Cocoa
 import AVFoundation
 
 extension NSImage {
-    convenience init?(sampleBuffer: CMSampleBuffer) {
+    convenience init?(sampleBuffer: CMSampleBuffer, bitsPerComponent: Int = 8) {
 
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
 
         CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
 
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
 
         guard let context = CGContext(data: CVPixelBufferGetBaseAddress(pixelBuffer),
-                                      width: width,
-                                      height: height,
-                                      bitsPerComponent: 8,
+                                      width: CVPixelBufferGetWidth(pixelBuffer),
+                                      height: CVPixelBufferGetHeight(pixelBuffer),
+                                      bitsPerComponent: bitsPerComponent,
                                       bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer),
                                       space: CGColorSpaceCreateDeviceRGB(),
                                       bitmapInfo: bitmapInfo.rawValue) else { return nil }
