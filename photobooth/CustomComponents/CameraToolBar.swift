@@ -15,7 +15,7 @@ protocol CameraToolBarDelegate: AnyObject {
     func takeCameraSnapshotButtonClicked()
     func openImageButtonClicked()
     func undoButtonClicked()
-    func clearButtonClicked()
+    func clearCanvasButtonClicked()
     func colorPickerButtonClicked()
 }
 
@@ -30,7 +30,7 @@ class CameraToolBar: NSView {
                                             newFileButton,
                                             saveFileButton,
                                             undoButton,
-                                            clearButton,
+                                            clearCanvasButton,
                                             colorPickerButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
@@ -73,15 +73,15 @@ class CameraToolBar: NSView {
         return undoButton
     }()
 
-    private lazy var clearButton: NSButton = {
-        let clearButton = NSButton(title: "Clear",
+    private lazy var clearCanvasButton: NSButton = {
+        let clearButton = NSButton(title: "Clear Canvas",
                                    target: self,
-                                   action: #selector(clearButtonClicked))
+                                   action: #selector(clearCanvasButtonClicked))
         return clearButton
     }()
 
     private lazy var colorPickerButton: NSButton = {
-        let colorPickerButton = NSButton(title: "Color picker",
+        let colorPickerButton = NSButton(title: "Color Picker",
                                          target: self,
                                          action: #selector(colorPickerButtonClicked))
         return colorPickerButton
@@ -127,9 +127,9 @@ class CameraToolBar: NSView {
 
     func hideEditingButtons(_ hideEditingButtons: Bool) {
         undoButton.isHidden = hideEditingButtons
-        clearButton.isHidden = hideEditingButtons
         newFileButton.isHidden = hideEditingButtons
         saveFileButton.isHidden = hideEditingButtons
+        clearCanvasButton.isHidden = hideEditingButtons
         colorPickerButton.isHidden = hideEditingButtons
 
         openImageButton.isHidden = !hideEditingButtons
@@ -158,8 +158,8 @@ class CameraToolBar: NSView {
         delegate?.undoButtonClicked()
     }
 
-    @objc private func clearButtonClicked() {
-        delegate?.clearButtonClicked()
+    @objc private func clearCanvasButtonClicked() {
+        delegate?.clearCanvasButtonClicked()
     }
 
     @objc private func colorPickerButtonClicked() {

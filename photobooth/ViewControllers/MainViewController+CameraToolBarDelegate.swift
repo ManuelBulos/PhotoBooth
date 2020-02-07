@@ -29,7 +29,7 @@ extension MainViewController: CameraToolBarDelegate {
         self.undoLastDrawing()
     }
 
-    func clearButtonClicked() {
+    func clearCanvasButtonClicked() {
         self.clearCanvas()
     }
 
@@ -37,4 +37,3 @@ extension MainViewController: CameraToolBarDelegate {
         self.openColorPicker()
     }
 }
-

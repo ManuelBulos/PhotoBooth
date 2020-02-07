@@ -15,7 +15,7 @@ class MainViewController: NSViewController {
     private lazy var stackView: NSStackView = {
         let stackView = NSStackView(views: [cameraPreview, imageEditorView, cameraToolBar])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.orientation = .vertical
         return stackView
     }()
@@ -40,7 +40,7 @@ class MainViewController: NSViewController {
 
     private lazy var newFileWarningAlert: NSAlert = {
         return NSAlert(message: "All changes will be lost, are you sure?",
-                       firstButtonTitle: "Yes, create new file")
+                       firstButtonTitle: "Continue")
     }()
 
     // MARK: - Private Properties
@@ -63,7 +63,6 @@ class MainViewController: NSViewController {
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
-
             // Locks the aspect ratio of the controller's view
             view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: self.mainViewAspectRatio)
         ])
@@ -108,9 +107,10 @@ class MainViewController: NSViewController {
         imageEditorView.undo()
     }
 
-    /// Clears all drawings from canvas
+    /// Shows warning about losing all changes, if accepted it will clear all drawings from canvas
     internal func clearCanvas() {
-        imageEditorView.clearCanvas()
+        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        if userAcceptedWarning { imageEditorView.clearCanvas() }
     }
 
     /// Presents new window with a color picker
