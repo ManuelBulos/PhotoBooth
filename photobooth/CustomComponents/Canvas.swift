@@ -13,8 +13,15 @@ class Canvas: NSView {
 
     // MARK: - Private Properties
 
-    /// All drawing is stored in a collection of lines.
+    /// All drawing is stored in a collection of lines
     private var lines: [Line] = [Line]()
+
+    /// Undos counter, starts at 0
+    private var undosCounter: Int = 0
+
+    /// Maximum number of undos allowed
+    /// Defaults to infinite
+    private var undosLimit: Int?
 
     // MARK: - Public Properties
 
@@ -26,40 +33,61 @@ class Canvas: NSView {
 
     // MARK: - Life Cycle
 
+    init(undosLimit: Int? = nil) {
+        super.init(frame: .zero)
+        commonInit(undosLimit: undosLimit)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    private func commonInit(undosLimit: Int? = nil) {
+        self.undosLimit = undosLimit
+    }
+
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
         self.lines.forEach { (line) in
             line.drawInCurrentContext()
         }
     }
 
     override func mouseDown(with event: NSEvent) {
-        let newLine: Line = Line(points: [CGPoint](), color: self.lineColor, width: self.lineWidth)
-        self.lines.append(newLine)
+        if undosCounter > 1 { undosCounter -= 1 }
+
+        self.lines.append(Line(points: [CGPoint](),
+                               color: self.lineColor,
+                               width: self.lineWidth))
+
         self.needsDisplay = true
     }
 
     override func mouseDragged(with event: NSEvent) {
-        if var lastLine = self.lines.popLast() {
-            let point = convert(event.locationInWindow, from: nil)
-            lastLine.points.append(point)
-            self.lines.append(lastLine)
-            self.needsDisplay = true
-        }
+        self.lines.addPointToLastLine(event.getPoint(inView: self))
+        self.needsDisplay = true
     }
 
     // MARK: - Functions
 
-    /// Removes all drawings
+    /// Removes all drawings and restarts undos counter
     func clear() {
+        self.undosCounter = Int()
         self.lines.removeAll()
         self.needsDisplay = true
     }
 
     /// Removes last continuous line
     func undo() {
+        // avoids undoing if undos limit has been reached
+        if let undosLimit = undosLimit, undosCounter >= undosLimit {
+            return
+        }
+
         _ = self.lines.popLast()
         self.needsDisplay = true
+
+        undosCounter += 1
     }
 }

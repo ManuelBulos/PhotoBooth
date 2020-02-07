@@ -37,3 +37,14 @@ struct Line {
         context.strokePath()
     }
 }
+
+// MARK: - Array Extension
+
+extension Array where Element == Line {
+    mutating func addPointToLastLine(_ point: NSPoint) {
+        if var lastLine = self.popLast() {
+            lastLine.points.append(point)
+            self.append(lastLine)
+        }
+    }
+}

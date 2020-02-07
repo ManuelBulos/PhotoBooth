@@ -26,6 +26,7 @@
 		FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */; };
 		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
 		FAD50B1023ED268600C304F2 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0F23ED268600C304F2 /* Line.swift */; };
+		FAD50B1223ED688700C304F2 /* NSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B1123ED688700C304F2 /* NSEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraToolBarDelegate.swift"; sourceTree = "<group>"; };
 		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FAD50B0F23ED268600C304F2 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		FAD50B1123ED688700C304F2 /* NSEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				FA2D44A923EB823300CCD009 /* NSImage.swift */,
 				FA2D44B523EBB61900CCD009 /* NSAlert.swift */,
+				FAD50B1123ED688700C304F2 /* NSEvent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				FA2D44B323EB823300CCD009 /* CameraPreview.swift in Sources */,
 				FA2D44AD23EB823300CCD009 /* NSImage.swift in Sources */,
 				FA2D448C23EB81E000CCD009 /* AppDelegate.swift in Sources */,
+				FAD50B1223ED688700C304F2 /* NSEvent.swift in Sources */,
 				FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */,
 				FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */,
 				FAD50B1023ED268600C304F2 /* Line.swift in Sources */,

@@ -21,7 +21,7 @@ class ImageEditorView: NSView {
     }()
 
     private lazy var canvas: Canvas = {
-        let canvas = Canvas()
+        let canvas = Canvas(undosLimit: 6)
         canvas.translatesAutoresizingMaskIntoConstraints = false
         return canvas
     }()
