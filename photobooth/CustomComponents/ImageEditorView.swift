@@ -41,7 +41,6 @@ class ImageEditorView: NSView {
     private func commonInit() {
         self.addSubview(imageView)
         self.addSubview(canvas)
-        NSColorPanel.shared.addTarget(self, action: #selector(didSelectColor(_:)))
     }
 
     override func layout() {
@@ -50,17 +49,12 @@ class ImageEditorView: NSView {
         canvas.frame = frame
     }
 
-    // MARK: - Private Functions
-
-    @objc private func didSelectColor(_ sender: NSColorPanel) {
-        self.setLineColor(sender.color)
-    }
-
     // MARK: - Public Functions
 
-    /// Sets the new image
+    /// Sets the new image and clears canvas
     func setImage(_ image: NSImage) {
         self.imageView.image = image
+        self.clearCanvas()
     }
 
     /// Shows an NSColorPanel window
@@ -78,11 +72,6 @@ class ImageEditorView: NSView {
         self.canvas.lineWidth = width
     }
 
-    /// Sets the color of the line stroke in the canvas
-    func setLineColor(_ color: NSColor) {
-        self.canvas.lineColor = color
-    }
-
     /// Removes all drawings from the canvas
     func clearCanvas() {
         self.canvas.clear()
@@ -91,12 +80,6 @@ class ImageEditorView: NSView {
     /// Removes last continuous line from the canvas
     func undo() {
         self.canvas.undo()
-    }
-
-    func initWorkspace(showColorPicker: Bool) {
-        self.clearCanvas()
-        self.setLineColor(NSColorPanel.shared.color)
-        showColorPicker ? self.openColorPicker() : self.closeColorPicker()
     }
 }
 

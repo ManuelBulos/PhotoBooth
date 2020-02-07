@@ -71,16 +71,31 @@ class MainViewController: NSViewController {
 
     // MARK: - Functions
 
+    /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
+    internal func createNewFile() {
+        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        if userAcceptedWarning { self.showCameraPreview() }
+    }
+
     /// Shows the ImageEditorView and hides the Camera Preview
     internal func showImageEditorView(image: NSImage) {
         imageEditorView.setImage(image)
+        imageEditorView.openColorPicker()
         toggleState(isEditing: true)
     }
 
     /// Shows the Camera Preview and hides the ImageEditorView
     private func showCameraPreview() {
         cameraPreview.startPreview()
+        imageEditorView.closeColorPicker()
         toggleState(isEditing: false)
+    }
+
+    /// Toggles isHidden properties for cameraPreview and imageEditorView.
+    private func toggleState(isEditing: Bool) {
+        cameraPreview.isHidden = isEditing
+        imageEditorView.isHidden = !isEditing
+        cameraToolBar.hideEditingButtons(!isEditing)
     }
 
     /// Captures a still image from the current AVCapture Session
@@ -101,20 +116,5 @@ class MainViewController: NSViewController {
     /// Presents new window with a color picker
     internal func openColorPicker() {
         imageEditorView.openColorPicker()
-    }
-
-    /// Toggles isHidden property for cameraPreview and imageEditorView.
-    /// Resets state of ImageEditorView
-    private func toggleState(isEditing: Bool) {
-        cameraPreview.isHidden = isEditing
-        imageEditorView.isHidden = !isEditing
-        cameraToolBar.hideEditingButtons(!isEditing)
-        imageEditorView.initWorkspace(showColorPicker: isEditing)
-    }
-
-    /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
-    internal func createNewFile() {
-        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
-        if userAcceptedWarning { self.showCameraPreview() }
     }
 }

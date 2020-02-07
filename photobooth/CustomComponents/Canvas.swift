@@ -27,8 +27,10 @@ class Canvas: NSView {
     /// Width of the stroke, ddefaults to 10
     var lineWidth: CGFloat = 10
 
-    /// Color of the stroke, defaults to NSColorPanel selected color
-    var lineColor: NSColor = NSColorPanel.shared.color
+    /// NSColorPanel shared selected color
+    var lineColor: NSColor {
+        return NSColorPanel.shared.color
+    }
 
     // MARK: - Life Cycle
 
