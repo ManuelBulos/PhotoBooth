@@ -50,9 +50,7 @@ class Canvas: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        self.lines.forEach { (line) in
-            line.drawInCurrentContext()
-        }
+        self.lines.drawInCurrentContext()
     }
 
     override func mouseDown(with event: NSEvent) {

@@ -34,5 +34,11 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Photo Booth needs permission to capture snapshots</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>Photo Booth needs permission to save snapshots</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Photo Booth needs permission to save snapshots</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Photo Booth needs permission to save snapshots</string>
 </dict>
 </plist>

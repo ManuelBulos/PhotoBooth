@@ -25,14 +25,11 @@ struct Line {
 
         context.setStrokeColor(color.cgColor)
         context.setLineWidth(width)
-        context.setLineCap(.butt)
+        context.setLineCap(.round)
 
-        for (index, point) in points.enumerated() {
-            if index == 0 {
-                context.move(to: point)
-            } else {
-                context.addLine(to: point)
-            }
+        self.points.enumerated().forEach { (index: Int, point: CGPoint) in
+            // if index == 0 it means it's a new point. so we move the context to the new starting position
+            index == 0 ? context.move(to: point) : context.addLine(to: point)
         }
 
         context.strokePath()
@@ -42,10 +39,17 @@ struct Line {
 // MARK: - Array Extension
 
 extension Array where Element == Line {
+
+    /// Appends new NSPoint
     mutating func addPointToLastLine(_ point: NSPoint) {
         if var lastLine = self.popLast() {
             lastLine.points.append(point)
             self.append(lastLine)
         }
+    }
+
+    /// Draws lines in the current NSGraphicsContext
+    func drawInCurrentContext() {
+        self.forEach { $0.drawInCurrentContext() }
     }
 }

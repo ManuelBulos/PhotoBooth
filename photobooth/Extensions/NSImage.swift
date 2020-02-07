@@ -10,6 +10,13 @@ import Cocoa
 import AVFoundation
 
 extension NSImage {
+
+    /// Returns an bitmapImage using PNG format
+    var pngData: Data? {
+        guard let tiffRepresentation = tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return nil }
+        return bitmapImage.representation(using: .png, properties: [:])
+    }
+
     /// Inits an NSImage from a CMSampleBuffer
     convenience init?(sampleBuffer: CMSampleBuffer, bitsPerComponent: Int = 8) {
 
@@ -32,5 +39,15 @@ extension NSImage {
         CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
 
         self.init(cgImage: cgImage, size: .zero)
+    }
+
+    /// Tries to save image into a given directory using a given name and extension
+    func write(to directory: String, name: String, ext: String) throws {
+        let filePath: NSString = "file://\(directory)" as NSString
+        let fileName: String = "\(name).\(ext.trimmingCharacters(in: ["."]))"
+
+        guard let pathURL: URL = URL(string: filePath.appendingPathComponent(fileName)) else { return }
+
+        try self.pngData?.write(to: pathURL)
     }
 }

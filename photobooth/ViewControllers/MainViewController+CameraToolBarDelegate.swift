@@ -14,7 +14,7 @@ extension MainViewController: CameraToolBarDelegate {
     }
 
     func saveFileButtonClicked() {
-        // open finder
+        self.saveFile()
     }
 
     func takeCameraSnapshotButtonClicked() {

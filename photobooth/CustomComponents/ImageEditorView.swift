@@ -57,6 +57,14 @@ class ImageEditorView: NSView {
         self.clearCanvas()
     }
 
+    func getFinalImageResult() -> NSImage? {
+        return self.imageView.image
+    }
+
+//    func getPhotoBoothDocument() -> Any {
+//
+//    }
+
     /// Shows an NSColorPanel window
     func openColorPicker() {
         NSColorPanel.shared.makeKeyAndOrderFront(self)

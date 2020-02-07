@@ -70,17 +70,11 @@ class MainViewController: NSViewController {
 
     // MARK: - Functions
 
-    /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
-    internal func createNewFile() {
-        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
-        if userAcceptedWarning { self.showCameraPreview() }
-    }
-
-    /// Shows the ImageEditorView and hides the Camera Preview
-    internal func showImageEditorView(image: NSImage) {
-        imageEditorView.setImage(image)
-        imageEditorView.openColorPicker()
-        toggleState(isEditing: true)
+    /// Toggles isHidden properties for cameraPreview and imageEditorView.
+    private func toggleState(isEditing: Bool) {
+        cameraPreview.isHidden = isEditing
+        imageEditorView.isHidden = !isEditing
+        cameraToolBar.hideEditingButtons(!isEditing)
     }
 
     /// Shows the Camera Preview and hides the ImageEditorView
@@ -90,11 +84,17 @@ class MainViewController: NSViewController {
         toggleState(isEditing: false)
     }
 
-    /// Toggles isHidden properties for cameraPreview and imageEditorView.
-    private func toggleState(isEditing: Bool) {
-        cameraPreview.isHidden = isEditing
-        imageEditorView.isHidden = !isEditing
-        cameraToolBar.hideEditingButtons(!isEditing)
+    /// Shows the ImageEditorView and hides the Camera Preview
+    internal func showImageEditorView(image: NSImage) {
+        imageEditorView.setImage(image)
+        imageEditorView.openColorPicker()
+        toggleState(isEditing: true)
+    }
+
+    /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
+    internal func createNewFile() {
+        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        if userAcceptedWarning { self.showCameraPreview() }
     }
 
     /// Captures a still image from the current AVCapture Session
@@ -116,5 +116,21 @@ class MainViewController: NSViewController {
     /// Presents new window with a color picker
     internal func openColorPicker() {
         imageEditorView.openColorPicker()
+    }
+
+    /// Tries to save current file
+    internal func saveFile() {
+        let savePanel = NSSavePanel()
+        if savePanel.runModal() == .OK {
+            guard
+                let currentImage: NSImage = imageEditorView.getFinalImageResult(),
+                let selectedDirectory: String = savePanel.directoryURL?.path
+                else { return }
+            do {
+                try currentImage.write(to: selectedDirectory, name: savePanel.nameFieldStringValue, ext: "png")
+            } catch {
+                NSAlert(error: error).runModal()
+            }
+        }
     }
 }
