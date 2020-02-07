@@ -15,16 +15,17 @@ protocol CameraToolBarDelegate: AnyObject {
     func takeCameraSnapshotButtonClicked()
     func openImageButtonClicked()
     func undoButtonClicked()
+    func clearButtonClicked()
     func colorPickerButtonClicked()
 }
 
-/// NSView with user interaction buttons
+/// NSView with buttons for controlling the camera and a canvas
 class CameraToolBar: NSView {
 
     // MARK: - UI Elements
 
     private lazy var stackView: NSStackView = {
-        let stackView = NSStackView(views: [takeCameraSnapshotButton, openImageButton, newFileButton, saveFileButton, undoButton, colorPickerButton])
+        let stackView = NSStackView(views: [takeCameraSnapshotButton, openImageButton, newFileButton, saveFileButton, undoButton, clearButton, colorPickerButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.spacing = 12
@@ -64,6 +65,13 @@ class CameraToolBar: NSView {
                                   target: self,
                                   action: #selector(undoButtonClicked))
         return undoButton
+    }()
+
+    private lazy var clearButton: NSButton = {
+        let clearButton = NSButton(title: "Clear",
+                                   target: self,
+                                   action: #selector(clearButtonClicked))
+        return clearButton
     }()
 
     private lazy var colorPickerButton: NSButton = {
@@ -113,6 +121,7 @@ class CameraToolBar: NSView {
 
     func hideEditingButtons(_ hideEditingButtons: Bool) {
         undoButton.isHidden = hideEditingButtons
+        clearButton.isHidden = hideEditingButtons
         newFileButton.isHidden = hideEditingButtons
         saveFileButton.isHidden = hideEditingButtons
         colorPickerButton.isHidden = hideEditingButtons
@@ -141,6 +150,10 @@ class CameraToolBar: NSView {
 
     @objc private func undoButtonClicked() {
         delegate?.undoButtonClicked()
+    }
+
+    @objc private func clearButtonClicked() {
+        delegate?.clearButtonClicked()
     }
 
     @objc private func colorPickerButtonClicked() {

@@ -10,6 +10,7 @@ import Cocoa
 import AVFoundation
 
 extension NSImage {
+    /// Inits an NSImage from a CMSampleBuffer
     convenience init?(sampleBuffer: CMSampleBuffer, bitsPerComponent: Int = 8) {
 
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }

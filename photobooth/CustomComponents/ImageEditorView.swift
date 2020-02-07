@@ -8,7 +8,10 @@
 
 import Cocoa
 
+/// NSView that holds a Canvas above an NSImageView
 class ImageEditorView: NSView {
+
+    // MARK: - UI Elements
 
     private lazy var imageView: NSImageView = {
         let imageView = NSImageView()
@@ -17,33 +20,50 @@ class ImageEditorView: NSView {
         return imageView
     }()
 
+    private lazy var canvas: Canvas = {
+        let canvas = Canvas()
+        canvas.translatesAutoresizingMaskIntoConstraints = false
+        return canvas
+    }()
+
+    // MARK: - Life Cycle
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        commonInit()
+        self.commonInit()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        self.commonInit()
     }
 
     private func commonInit() {
-        addSubview(imageView)
+        self.addSubview(imageView)
+        self.addSubview(canvas, positioned: .above, relativeTo: imageView)
     }
 
     override func layout() {
         super.layout()
         imageView.frame = frame
+        canvas.frame = frame
     }
 
+    // MARK: - Functions
+
+    /// Sets the image and clears the canvas
     func setImage(_ image: NSImage) {
         self.imageView.image = image
-        removeDrawings()
+        self.canvas.clear()
     }
 
-    /// Clears canvas
-    func removeDrawings() {}
+    /// Removes all drawings from the canvas
+    func clearCanvas() {
+        self.canvas.clear()
+    }
 
-    /// Undos last continuous pencil strike
-    func undoLastDrawing() {}
+    /// Removes last continuous line from the canvas
+    func undo() {
+        self.canvas.undo()
+    }
 }

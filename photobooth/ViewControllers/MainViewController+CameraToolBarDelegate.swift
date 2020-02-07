@@ -29,6 +29,10 @@ extension MainViewController: CameraToolBarDelegate {
         self.undoLastDrawing()
     }
 
+    func clearButtonClicked() {
+        self.clearCanvas()
+    }
+
     func colorPickerButtonClicked() {
         // display color picker palette
     }

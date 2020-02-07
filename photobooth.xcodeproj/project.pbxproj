@@ -24,6 +24,7 @@
 		FA2D44BC23EBC8AF00CCD009 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */; };
 		FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */; };
 		FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */; };
+		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraPreviewDelegate.swift"; sourceTree = "<group>"; };
 		FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraToolBarDelegate.swift"; sourceTree = "<group>"; };
+		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,9 +130,10 @@
 		FA2D44B923EBB69C00CCD009 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				FA2D44AA23EB823300CCD009 /* ImageEditorView.swift */,
 				FA2D44AC23EB823300CCD009 /* CameraPreview.swift */,
 				FA2D44AB23EB823300CCD009 /* CameraToolBar.swift */,
+				FAD50B0C23ED186B00C304F2 /* Canvas.swift */,
+				FA2D44AA23EB823300CCD009 /* ImageEditorView.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA2D44BC23EBC8AF00CCD009 /* MainViewController.swift in Sources */,
+				FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */,
 				FA2D44AF23EB823300CCD009 /* ImageEditorView.swift in Sources */,
 				FA2D44B123EB823300CCD009 /* CameraToolBar.swift in Sources */,
 				FA2D44B323EB823300CCD009 /* CameraPreview.swift in Sources */,

@@ -57,27 +57,27 @@ class MainViewController: NSViewController {
 
     override func updateViewConstraints() {
         super.updateViewConstraints()
-
         NSLayoutConstraint.activate([
+            // StackView
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            stackView.topAnchor.constraint(equalTo: view.topAnchor)
-        ])
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
 
-        // Locks the aspect ratio of the controller's view
-        view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: self.mainViewAspectRatio).isActive = true
+            // Locks the aspect ratio of the controller's view
+            view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: self.mainViewAspectRatio)
+        ])
     }
 
     // MARK: - Functions
 
-    /// Shows drawing canvas
+    /// Shows the ImageEditorView and hides the Camera Preview
     internal func showImageEditorView(image: NSImage) {
         imageEditorView.setImage(image)
         toggleState(isEditing: true)
     }
 
-    /// Shows camera preview
+    /// Shows the Camera Preview and hides the ImageEditorView
     private func showCameraPreview() {
         cameraPreview.startPreview()
         toggleState(isEditing: false)
@@ -90,7 +90,12 @@ class MainViewController: NSViewController {
 
     /// Undos last continuous pencil strike
     internal func undoLastDrawing() {
-        imageEditorView.undoLastDrawing()
+        imageEditorView.undo()
+    }
+
+    /// Clears all drawings from canvas
+    internal func clearCanvas() {
+        imageEditorView.clearCanvas()
     }
 
     /// Toggles isHidden property for cameraPreview, imageEditorView and cameraToolBar editing buttons
