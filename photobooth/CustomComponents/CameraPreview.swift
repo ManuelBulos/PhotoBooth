@@ -29,6 +29,19 @@ class CameraPreview: NSView {
 
     private var previewLayer = AVCaptureVideoPreviewLayer()
 
+    // MARK: - Types
+
+    enum CameraError: Error, LocalizedError {
+        case captureDeviceNotFound
+
+        public var errorDescription: String? {
+            switch self {
+                case .captureDeviceNotFound:
+                    return "Camera not found"
+            }
+        }
+    }
+
     // MARK: - Private Properties
 
     private lazy var captureSession: AVCaptureSession = {
@@ -134,6 +147,8 @@ class CameraPreview: NSView {
                 } catch {
                     self.delegate?.didEncounterError(error)
                 }
+            } else {
+                self.delegate?.didEncounterError(CameraError.captureDeviceNotFound)
             }
         }
     }
