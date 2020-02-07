@@ -100,23 +100,21 @@ class MainViewController: NSViewController {
 
     /// Presents new window with a color picker
     internal func openColorPicker() {
-        // FIXME
-        imageEditorView.setLineColor(.yellow)
+        imageEditorView.openColorPicker()
     }
 
-    /// Toggles isHidden property for cameraPreview, imageEditorView and cameraToolBar editing buttons
+    /// Toggles isHidden property for cameraPreview and imageEditorView.
+    /// Resets state of ImageEditorView
     private func toggleState(isEditing: Bool) {
         cameraPreview.isHidden = isEditing
         imageEditorView.isHidden = !isEditing
         cameraToolBar.hideEditingButtons(!isEditing)
+        imageEditorView.initWorkspace(showColorPicker: isEditing)
     }
 
     /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
     internal func createNewFile() {
         let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
-
-        if userAcceptedWarning {
-            self.showCameraPreview()
-        }
+        if userAcceptedWarning { self.showCameraPreview() }
     }
 }

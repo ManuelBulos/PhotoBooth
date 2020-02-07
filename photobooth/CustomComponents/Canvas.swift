@@ -27,8 +27,8 @@ class Canvas: NSView {
     /// Width of the stroke, ddefaults to 10
     var lineWidth: CGFloat = 10
 
-    /// Color of the stroke, defaults to black
-    var lineColor: NSColor = .black
+    /// Color of the stroke, defaults to NSColorPanel selected color
+    var lineColor: NSColor = NSColorPanel.shared.color
 
     // MARK: - Life Cycle
 
@@ -54,7 +54,7 @@ class Canvas: NSView {
     }
 
     override func mouseDown(with event: NSEvent) {
-        if undosCounter > 1 { undosCounter -= 1 }
+        if undosCounter > 0 { undosCounter -= 1 }
 
         self.lines.append(Line(points: [CGPoint](),
                                color: self.lineColor,
@@ -78,6 +78,9 @@ class Canvas: NSView {
 
     /// Removes last continuous line
     func undo() {
+        // avoids undoing if canvas is empty
+        if lines.isEmpty { return }
+
         // avoids undoing if undos limit has been reached
         if let undosLimit = undosLimit,
             undosCounter >= undosLimit {

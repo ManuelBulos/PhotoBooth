@@ -25,7 +25,13 @@ class CameraToolBar: NSView {
     // MARK: - UI Elements
 
     private lazy var stackView: NSStackView = {
-        let stackView = NSStackView(views: [takeCameraSnapshotButton, openImageButton, newFileButton, saveFileButton, undoButton, clearButton, colorPickerButton])
+        let stackView = NSStackView(views: [takeCameraSnapshotButton,
+                                            openImageButton,
+                                            newFileButton,
+                                            saveFileButton,
+                                            undoButton,
+                                            clearButton,
+                                            colorPickerButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.spacing = 12
