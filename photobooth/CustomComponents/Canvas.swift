@@ -19,7 +19,6 @@ class Canvas: NSView {
     /// Undos counter, starts at 0
     private var undosCounter: Int = 0
 
-    /// Maximum number of undos allowed
     /// Defaults to infinite
     private var undosLimit: Int?
 
@@ -60,7 +59,6 @@ class Canvas: NSView {
         self.lines.append(Line(points: [CGPoint](),
                                color: self.lineColor,
                                width: self.lineWidth))
-
         self.needsDisplay = true
     }
 
@@ -81,13 +79,13 @@ class Canvas: NSView {
     /// Removes last continuous line
     func undo() {
         // avoids undoing if undos limit has been reached
-        if let undosLimit = undosLimit, undosCounter >= undosLimit {
+        if let undosLimit = undosLimit,
+            undosCounter >= undosLimit {
             return
         }
 
         _ = self.lines.popLast()
         self.needsDisplay = true
-
         undosCounter += 1
     }
 }

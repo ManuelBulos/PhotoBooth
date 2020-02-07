@@ -113,9 +113,9 @@ class MainViewController: NSViewController {
 
     /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
     internal func createNewFile() {
-        let shouldCreateNewFile: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        let userAcceptedWarning: Bool = newFileWarningAlert.runModal() == .alertFirstButtonReturn
 
-        if shouldCreateNewFile {
+        if userAcceptedWarning {
             self.showCameraPreview()
         }
     }

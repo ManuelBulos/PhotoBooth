@@ -22,6 +22,7 @@ struct Line {
     /// Draws line in the current NSGraphicsContext
     func drawInCurrentContext() {
         guard let context = NSGraphicsContext.current?.cgContext else { return }
+
         context.setStrokeColor(color.cgColor)
         context.setLineWidth(width)
         context.setLineCap(.butt)

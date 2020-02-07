@@ -125,9 +125,11 @@ class CameraPreview: NSView {
 
                     self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
                     self.previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+
                     self.flipPreview(isMirrored: isMirrored)
 
                     self.cameraView.layer?.addSublayer(previewLayer)
+
                     self.captureSession.startRunning()
                 } catch {
                     self.delegate?.didEncounterError(error)
