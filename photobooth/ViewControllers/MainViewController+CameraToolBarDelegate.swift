@@ -34,7 +34,7 @@ extension MainViewController: CameraToolBarDelegate {
     }
 
     func colorPickerButtonClicked() {
-        // display color picker palette
+        self.openColorPicker()
     }
 }
 

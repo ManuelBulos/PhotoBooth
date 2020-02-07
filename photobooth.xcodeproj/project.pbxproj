@@ -25,6 +25,7 @@
 		FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */; };
 		FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */; };
 		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
+		FAD50B1023ED268600C304F2 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0F23ED268600C304F2 /* Line.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraPreviewDelegate.swift"; sourceTree = "<group>"; };
 		FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraToolBarDelegate.swift"; sourceTree = "<group>"; };
 		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		FAD50B0F23ED268600C304F2 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				FA2D44B923EBB69C00CCD009 /* CustomComponents */,
-				FA2D44BA23EBB6B000CCD009 /* ViewControllers */,
 				FA2D44B823EBB69300CCD009 /* Extensions */,
+				FAD50B0E23ED266C00C304F2 /* Models */,
+				FA2D44BA23EBB6B000CCD009 /* ViewControllers */,
 				FA2D448B23EB81E000CCD009 /* AppDelegate.swift */,
 				FA2D448F23EB81E000CCD009 /* Assets.xcassets */,
 				FA2D449123EB81E000CCD009 /* Main.storyboard */,
@@ -146,6 +149,14 @@
 				FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FAD50B0E23ED266C00C304F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAD50B0F23ED268600C304F2 /* Line.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 				FA2D448C23EB81E000CCD009 /* AppDelegate.swift in Sources */,
 				FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */,
 				FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */,
+				FAD50B1023ED268600C304F2 /* Line.swift in Sources */,
 				FA2D44B623EBB61900CCD009 /* NSAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

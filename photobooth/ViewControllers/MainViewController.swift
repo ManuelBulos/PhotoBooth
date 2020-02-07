@@ -98,6 +98,12 @@ class MainViewController: NSViewController {
         imageEditorView.clearCanvas()
     }
 
+    /// Presents new window with a color picker
+    internal func openColorPicker() {
+        // FIXME
+        imageEditorView.setLineColor(.yellow)
+    }
+
     /// Toggles isHidden property for cameraPreview, imageEditorView and cameraToolBar editing buttons
     private func toggleState(isEditing: Bool) {
         cameraPreview.isHidden = isEditing

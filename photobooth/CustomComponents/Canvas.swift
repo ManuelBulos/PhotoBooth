@@ -14,53 +14,42 @@ class Canvas: NSView {
     // MARK: - Private Properties
 
     /// All drawing is stored in a collection of lines.
-    /// One line is a collection of points
-    private var lines: [[CGPoint]] = [[CGPoint]]()
+    private var lines: [Line] = [Line]()
 
     // MARK: - Public Properties
 
-    var lineColor: NSColor = .black
-
+    /// Width of the stroke, ddefaults to 10
     var lineWidth: CGFloat = 10
+
+    /// Color of the stroke, defaults to black
+    var lineColor: NSColor = .black
 
     // MARK: - Life Cycle
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
-        context.setStrokeColor(lineColor.cgColor)
-        context.setLineWidth(lineWidth)
-        context.setLineCap(.butt)
-
         self.lines.forEach { (line) in
-            for (index, point) in line.enumerated() {
-                if index == 0 {
-                    context.move(to: point)
-                } else {
-                    context.addLine(to: point)
-                }
-            }
+            line.drawInCurrentContext()
         }
-
-        context.strokePath()
     }
 
     override func mouseDown(with event: NSEvent) {
-        self.lines.append([CGPoint]())
+        let newLine: Line = Line(points: [CGPoint](), color: self.lineColor, width: self.lineWidth)
+        self.lines.append(newLine)
         self.needsDisplay = true
     }
 
     override func mouseDragged(with event: NSEvent) {
         if var lastLine = self.lines.popLast() {
             let point = convert(event.locationInWindow, from: nil)
-            lastLine.append(point)
+            lastLine.points.append(point)
             self.lines.append(lastLine)
             self.needsDisplay = true
         }
     }
 
-    // MARK: - Public Functions
+    // MARK: - Functions
 
     /// Removes all drawings
     func clear() {

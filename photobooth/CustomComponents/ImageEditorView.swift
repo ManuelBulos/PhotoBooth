@@ -54,7 +54,17 @@ class ImageEditorView: NSView {
     /// Sets the image and clears the canvas
     func setImage(_ image: NSImage) {
         self.imageView.image = image
-        self.canvas.clear()
+        self.clearCanvas()
+    }
+
+    /// Sets the width of the line stroke in the canvas
+    func setLineWidth(_ width: CGFloat) {
+        self.canvas.lineWidth = width
+    }
+
+    /// Sets the color of the line stroke in the canvas
+    func setLineColor(_ color: NSColor) {
+        self.canvas.lineColor = color
     }
 
     /// Removes all drawings from the canvas
