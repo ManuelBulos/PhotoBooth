@@ -42,12 +42,9 @@ extension NSImage {
     }
 
     /// Tries to save image into a given directory using a given name and extension
-    func write(to directory: String, name: String, ext: String) throws {
+    func write(to directory: String, name: String) throws {
         let filePath: NSString = "file://\(directory)" as NSString
-        let fileName: String = "\(name).\(ext.trimmingCharacters(in: ["."]))"
-
-        guard let pathURL: URL = URL(string: filePath.appendingPathComponent(fileName)) else { return }
-
+        guard let pathURL: URL = URL(string: filePath.appendingPathComponent(name)) else { return }
         try self.pngData?.write(to: pathURL)
     }
 }

@@ -52,7 +52,7 @@ class MainViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(stackView)
-        showCameraPreview()
+        self.showCameraPreview()
     }
 
     override func updateViewConstraints() {
@@ -120,17 +120,6 @@ class MainViewController: NSViewController {
 
     /// Tries to save current file
     internal func saveFile() {
-        let savePanel = NSSavePanel()
-        if savePanel.runModal() == .OK {
-            guard
-                let currentImage: NSImage = imageEditorView.getFinalImageResult(),
-                let selectedDirectory: String = savePanel.directoryURL?.path
-                else { return }
-            do {
-                try currentImage.write(to: selectedDirectory, name: savePanel.nameFieldStringValue, ext: "png")
-            } catch {
-                NSAlert(error: error).runModal()
-            }
-        }
+        MediaManager.shared.saveImage(imageEditorView.getFinalImageResult())
     }
 }

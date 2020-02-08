@@ -25,6 +25,7 @@
 		FA2D44BC23EBC8AF00CCD009 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */; };
 		FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */; };
 		FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */; };
+		FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC70F623EE309C007E3DB0 /* MediaManager.swift */; };
 		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
 		FAD50B1023ED268600C304F2 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0F23ED268600C304F2 /* Line.swift */; };
 		FAD50B1223ED688700C304F2 /* NSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B1123ED688700C304F2 /* NSEvent.swift */; };
@@ -59,6 +60,7 @@
 		FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraPreviewDelegate.swift"; sourceTree = "<group>"; };
 		FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraToolBarDelegate.swift"; sourceTree = "<group>"; };
+		FABC70F623EE309C007E3DB0 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FAD50B0F23ED268600C304F2 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		FAD50B1123ED688700C304F2 /* NSEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEvent.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				FA2D44B923EBB69C00CCD009 /* CustomComponents */,
 				FA2D44B823EBB69300CCD009 /* Extensions */,
+				FABC70F523EE308E007E3DB0 /* Managers */,
 				FAD50B0E23ED266C00C304F2 /* Models */,
 				FA2D44BA23EBB6B000CCD009 /* ViewControllers */,
 				FA2D448B23EB81E000CCD009 /* AppDelegate.swift */,
@@ -155,6 +158,14 @@
 				FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FABC70F523EE308E007E3DB0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FABC70F623EE309C007E3DB0 /* MediaManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		FAD50B0E23ED266C00C304F2 /* Models */ = {
@@ -277,6 +288,7 @@
 				FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */,
 				FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */,
 				FAD50B1023ED268600C304F2 /* Line.swift in Sources */,
+				FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */,
 				FA2D44B623EBB61900CCD009 /* NSAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
