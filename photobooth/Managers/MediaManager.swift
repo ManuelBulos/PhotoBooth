@@ -15,8 +15,8 @@ class MediaManager {
 
     private enum FileExtension: String, CaseIterable {
         case png
-        case pdf
         case jpeg
+        case svg
         case photobooth
 
         var stringValue: String {
@@ -32,6 +32,14 @@ class MediaManager {
         savePanel.allowedFileTypes = [FileExtension.png.stringValue]
         savePanel.allowsOtherFileTypes = false
         return savePanel
+    }()
+
+    private lazy var openPanel: NSOpenPanel = {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedFileTypes = FileExtension.allCases.map({ $0.stringValue })
+        openPanel.allowsMultipleSelection = false
+        openPanel.allowsOtherFileTypes = false
+        return openPanel
     }()
 
     private lazy var fileExtensionButton: NSPopUpButton = {
@@ -53,25 +61,55 @@ class MediaManager {
         savePanel.allowedFileTypes = [selectedExtension]
     }
 
-    func saveImage(_ image: NSImage) {
-        if savePanel.runModal() == .OK {
-            guard let selectedDirectory: String = savePanel.directoryURL?.path else { return }
+    // FIXME: Find the right way to open bundle packages (collection of files inside a custom extension directory (.photobooth))
+//    func openFile() -> PhotoBoothFile? {
+//        if openPanel.runModal() == .OK {
+//            guard let selectedFilePath: URL = openPanel.urls.first else { return nil }
+//            if let image = NSImage(contentsOf: selectedFilePath) {
+//                return PhotoBoothFile(image: image, pencilData: PencilData())
+//            } else {
+//                do {
+//                    let data = try Data(contentsOf: selectedFilePath)
+//                    return PhotoBoothFile(data: data)
+//                } catch {
+//                    NSAlert(error: error).runModal()
+//                }
+//            }
+//        }
+//        return nil
+//    }
+
+    func openSVGFile() -> XML.Accessor? {
+        if openPanel.runModal() == .OK {
+            guard let selectedFilePath: URL = openPanel.urls.first else { return nil }
             do {
-                try image.pngData?.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
+                let data = try Data(contentsOf: selectedFilePath)
+                return XML.parse(data)
             } catch {
                 NSAlert(error: error).runModal()
             }
         }
+        return nil
     }
 
-    func savePencilData(_ pdfData: Data) {
+    func saveFile(_ photoBoothFile: PhotoBoothFile) {
         if savePanel.runModal() == .OK {
+
             guard let selectedDirectory: String = savePanel.directoryURL?.path else { return }
-            do {
-                try pdfData.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
-            } catch {
-                NSAlert(error: error).runModal()
-            }
+
+            let selectedExtension: FileExtension = FileExtension(rawValue: fileExtensionButton.selectedItem?.title ?? "png") ?? .png
+
+                do {
+                    switch selectedExtension {
+                        case .svg:
+                            let xml = photoBoothFile.pencilData?.getSVGString()
+                            try xml?.data(using: .utf8)?.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
+                        default:
+                            try photoBoothFile.image.pngData?.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
+                    }
+                } catch {
+                    NSAlert(error: error).runModal()
+                }
         }
     }
 }

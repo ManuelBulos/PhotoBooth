@@ -15,7 +15,7 @@ class Canvas: NSView {
     // MARK: - Private Properties
 
     /// All drawing is stored in a collection of lines
-    private var lines: [Line] = [Line]()
+    private var pencilData: PencilData = PencilData()
 
     /// Undos counter, starts at 0
     private var undosCounter: Int = 0
@@ -31,6 +31,11 @@ class Canvas: NSView {
     /// NSColorPanel shared selected color
     var lineColor: NSColor {
         return NSColorPanel.shared.color
+    }
+
+    /// SVG XML data
+    var svgString: String {
+        return pencilData.getSVGString(size: self.frame.size)
     }
 
     // MARK: - Life Cycle
@@ -51,21 +56,25 @@ class Canvas: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        self.lines.drawInCurrentContext()
+        self.pencilData.drawInCurrentContext()
     }
 
     override func mouseDown(with event: NSEvent) {
         if undosCounter > 0 { undosCounter -= 1 }
-
-        self.lines.append(Line(points: [CGPoint](),
-                               color: self.lineColor,
-                               width: self.lineWidth))
+        self.pencilData.addLine(Line(points: [CGPoint](),
+                                     color: self.lineColor,
+                                     width: self.lineWidth))
         self.needsDisplay = true
     }
 
     override func mouseDragged(with event: NSEvent) {
-        self.lines.addPointToLastLine(event.getPoint(inView: self))
+        self.pencilData.addPointToLastLine(event.getPoint(inView: self))
         self.needsDisplay = true
+    }
+
+    override func layout() {
+        super.layout()
+        self.pencilData.setCanvasSize(self.frame.size)
     }
 
     // MARK: - Functions
@@ -73,14 +82,14 @@ class Canvas: NSView {
     /// Removes all drawings and restarts undos counter
     func clear() {
         self.undosCounter = Int()
-        self.lines.removeAll()
+        self.pencilData.removeAllLines()
         self.needsDisplay = true
     }
 
     /// Removes last continuous line
     func undo() {
         // avoids undoing if canvas is empty
-        if lines.isEmpty { return }
+        if self.pencilData.isEmpty { return }
 
         // avoids undoing if undos limit has been reached
         if let undosLimit = undosLimit,
@@ -88,16 +97,19 @@ class Canvas: NSView {
             return
         }
 
-        _ = self.lines.popLast()
+        self.pencilData.popLastLine()
         self.needsDisplay = true
         undosCounter += 1
     }
 
-    func getSVGString() -> String {
-        self.lines.getSVGString()
+    /// Updates current rect and displays new drawings
+    func setPencilData(_ pencilData: PencilData) {
+        self.pencilData = pencilData
+        self.needsDisplay = true
     }
 
-    func getPDFData() -> Data? {
-        return self.dataWithPDF(inside: self.visibleRect)
+    /// Returns current PencilData
+    func getPencilData() -> PencilData {
+        return self.pencilData
     }
 }

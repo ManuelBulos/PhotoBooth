@@ -27,6 +27,13 @@ class ImageEditorView: NSView {
         return canvas
     }()
 
+    // MARK: - Properties
+
+    /// SVG XML data
+    var svgString: String {
+        return self.canvas.svgString
+    }
+
     // MARK: - Life Cycle
 
     override init(frame frameRect: NSRect) {
@@ -52,18 +59,18 @@ class ImageEditorView: NSView {
 
     // MARK: - Public Functions
 
-    /// Sets the new image and clears canvas
-    func setImage(_ image: NSImage) {
-        self.imageView.image = image
+    func setPhotoBoothFile(_ photoBoothFile: PhotoBoothFile) {
         self.clearCanvas()
+        self.imageView.image = photoBoothFile.image
+
+        if let pencilData = photoBoothFile.pencilData {
+            self.canvas.setPencilData(pencilData)
+        }
     }
 
-    func getFinalImageResult() -> NSImage? {
-        return self.imageView.image
-    }
-
-    func getPhotoBoothDocument() -> Data? {
-        return self.canvas.getPDFData()
+    func getPhotoBoothFile() -> PhotoBoothFile? {
+        guard let image = self.imageView.image else { return nil }
+        return PhotoBoothFile(image: image, pencilData: canvas.getPencilData())
     }
 
     /// Shows an NSColorPanel window
@@ -91,24 +98,3 @@ class ImageEditorView: NSView {
         self.canvas.undo()
     }
 }
-
-extension NSImage {
-    var context: CGContext? {
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let size = self.size
-        let contextRef = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: 1)
-        var graphicsContext: NSGraphicsContext? = nil
-        if let contextRef = contextRef {
-            graphicsContext = NSGraphicsContext(cgContext: contextRef, flipped: false)
-        }
-
-        let currentContext = NSGraphicsContext.current
-        NSGraphicsContext.current = graphicsContext
-        self.draw(in: NSRect(x: 0, y: 0, width: size.width, height: size.height))
-        NSGraphicsContext.current = currentContext
-
-        return contextRef
-    }
-}
-
-

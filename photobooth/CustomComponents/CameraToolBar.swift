@@ -13,7 +13,7 @@ protocol CameraToolBarDelegate: AnyObject {
     func newFileButtonClicked()
     func saveFileButtonClicked()
     func takeCameraSnapshotButtonClicked()
-    func openImageButtonClicked()
+    func openFileButtonClicked()
     func undoButtonClicked()
     func clearCanvasButtonClicked()
     func colorPickerButtonClicked()
@@ -26,8 +26,8 @@ class CameraToolBar: NSView {
 
     private lazy var stackView: NSStackView = {
         let stackView = NSStackView(views: [takeCameraSnapshotButton,
-                                            openImageButton,
                                             newFileButton,
+                                            openFileButton,
                                             saveFileButton,
                                             undoButton,
                                             clearCanvasButton,
@@ -59,10 +59,10 @@ class CameraToolBar: NSView {
         return takeCameraSnapshotButton
     }()
 
-    private lazy var openImageButton: NSButton = {
+    private lazy var openFileButton: NSButton = {
         let openImageButton = NSButton(title: "Open",
                                        target: self,
-                                       action: #selector(openImageButtonClicked))
+                                       action: #selector(openFileButtonClicked))
         return openImageButton
     }()
 
@@ -132,7 +132,6 @@ class CameraToolBar: NSView {
         clearCanvasButton.isHidden = hideEditingButtons
         colorPickerButton.isHidden = hideEditingButtons
 
-        openImageButton.isHidden = !hideEditingButtons
         takeCameraSnapshotButton.isHidden = !hideEditingButtons
     }
 
@@ -150,8 +149,8 @@ class CameraToolBar: NSView {
         delegate?.takeCameraSnapshotButtonClicked()
     }
 
-    @objc private func openImageButtonClicked() {
-        delegate?.openImageButtonClicked()
+    @objc private func openFileButtonClicked() {
+        delegate?.openFileButtonClicked()
     }
 
     @objc private func undoButtonClicked() {

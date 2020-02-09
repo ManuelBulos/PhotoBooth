@@ -14,6 +14,6 @@ extension MainViewController: CameraPreviewDelegate {
     }
 
     func didTakeSnapshot(_ snapshot: NSImage) {
-        self.showImageEditorView(image: snapshot)
+        self.showImageEditorView(photoBoothFile: PhotoBoothFile(image: snapshot))
     }
 }

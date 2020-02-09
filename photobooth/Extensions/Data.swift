@@ -10,7 +10,7 @@ import Foundation
 import Quartz
 
 extension Data {
-    /// Tries to save pdf into a given directory using a given name and extension
+    /// Tries to save data into a given directory using a given name and extension
     func write(to directory: String, name: String) throws {
         let filePath: NSString = "file://\(directory)" as NSString
         guard let pathURL: URL = URL(string: filePath.appendingPathComponent(name)) else { return }

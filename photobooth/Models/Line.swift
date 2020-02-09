@@ -18,6 +18,12 @@ struct Line {
     let color: NSColor
     let width: CGFloat
 
+    // MARK: - Life Cycle
+
+//    init(polyline: String) {
+//
+//    }
+
     // MARK: - Functions
 
     /// Draws line in the current NSGraphicsContext
@@ -34,29 +40,5 @@ struct Line {
         }
 
         context.strokePath()
-    }
-}
-
-// MARK: - Array Extension
-
-extension Array where Element == Line {
-
-    /// Appends new NSPoint
-    mutating func addPointToLastLine(_ point: NSPoint) {
-        if var lastLine = self.popLast() {
-            lastLine.points.append(point)
-            self.append(lastLine)
-        }
-    }
-
-    /// Draws lines in the current NSGraphicsContext
-    func drawInCurrentContext() {
-        self.forEach { $0.drawInCurrentContext() }
-    }
-
-    /// Maps points to svg file
-    func getSVGString() -> String {
-        let svgString: String = String()
-        return svgString
     }
 }

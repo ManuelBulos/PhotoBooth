@@ -40,11 +40,4 @@ extension NSImage {
 
         self.init(cgImage: cgImage, size: .zero)
     }
-
-    /// Tries to save image into a given directory using a given name and extension
-//    func write(to directory: String, name: String) throws {
-//        let filePath: NSString = "file://\(directory)" as NSString
-//        guard let pathURL: URL = URL(string: filePath.appendingPathComponent(name)) else { return }
-//        try self.pngData?.write(to: pathURL)
-//    }
 }

@@ -15,7 +15,7 @@ class MainViewController: NSViewController {
     private lazy var stackView: NSStackView = {
         let stackView = NSStackView(views: [cameraPreview, imageEditorView, cameraToolBar])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalCentering
         stackView.orientation = .vertical
         return stackView
     }()
@@ -47,6 +47,9 @@ class MainViewController: NSViewController {
 
     private let mainViewAspectRatio: CGFloat = 1.35
 
+    // MARK: - Public Properties
+
+
     // MARK: - Life Cycle Functions
 
     override func viewDidLoad() {
@@ -63,6 +66,7 @@ class MainViewController: NSViewController {
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
+
             // Locks the aspect ratio of the controller's view
             view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: self.mainViewAspectRatio)
         ])
@@ -85,8 +89,8 @@ class MainViewController: NSViewController {
     }
 
     /// Shows the ImageEditorView and hides the Camera Preview
-    internal func showImageEditorView(image: NSImage) {
-        imageEditorView.setImage(image)
+    internal func showImageEditorView(photoBoothFile: PhotoBoothFile) {
+        imageEditorView.setPhotoBoothFile(photoBoothFile)
         imageEditorView.openColorPicker()
         toggleState(isEditing: true)
     }
@@ -120,8 +124,15 @@ class MainViewController: NSViewController {
 
     /// Tries to save current file
     internal func saveFile() {
-        guard let pdfData = imageEditorView.getPhotoBoothDocument() else { return }
-        MediaManager.shared.savePencilData(pdfData)
-//        MediaManager.shared.saveImage(imageEditorView.getFinalImageResult())
+        guard let photoBoothFile: PhotoBoothFile = imageEditorView.getPhotoBoothFile() else { return }
+        MediaManager.shared.saveFile(photoBoothFile)
+    }
+
+    /// Opens photobooth file selected by user
+    internal func openFile() {
+        guard let xml = MediaManager.shared.openSVGFile() else { return }
+        print(xml.svg.attributes["width"])
+//        guard let photoBoothFile: PhotoBoothFile = MediaManager.shared.openFile() else { return }
+//        showImageEditorView(photoBoothFile: photoBoothFile)
     }
 }

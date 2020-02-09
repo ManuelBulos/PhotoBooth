@@ -21,8 +21,8 @@ extension MainViewController: CameraToolBarDelegate {
         self.takeSnapshot()
     }
 
-    func openImageButtonClicked() {
-        // open finder and select image
+    func openFileButtonClicked() {
+        self.openFile()
     }
 
     func undoButtonClicked() {
