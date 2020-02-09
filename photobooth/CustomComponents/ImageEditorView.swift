@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Quartz
 
 /// NSView that holds a Canvas above an NSImageView
 class ImageEditorView: NSView {
@@ -61,9 +62,9 @@ class ImageEditorView: NSView {
         return self.imageView.image
     }
 
-//    func getPhotoBoothDocument() -> Any {
-//
-//    }
+    func getPhotoBoothDocument() -> Data? {
+        return self.canvas.getPDFData()
+    }
 
     /// Shows an NSColorPanel window
     func openColorPicker() {
@@ -90,4 +91,24 @@ class ImageEditorView: NSView {
         self.canvas.undo()
     }
 }
+
+extension NSImage {
+    var context: CGContext? {
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let size = self.size
+        let contextRef = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: 1)
+        var graphicsContext: NSGraphicsContext? = nil
+        if let contextRef = contextRef {
+            graphicsContext = NSGraphicsContext(cgContext: contextRef, flipped: false)
+        }
+
+        let currentContext = NSGraphicsContext.current
+        NSGraphicsContext.current = graphicsContext
+        self.draw(in: NSRect(x: 0, y: 0, width: size.width, height: size.height))
+        NSGraphicsContext.current = currentContext
+
+        return contextRef
+    }
+}
+
 

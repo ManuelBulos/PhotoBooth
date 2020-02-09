@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Quartz
 
 class MediaManager {
 
@@ -14,6 +15,7 @@ class MediaManager {
 
     private enum FileExtension: String, CaseIterable {
         case png
+        case pdf
         case jpeg
         case photobooth
 
@@ -51,11 +53,22 @@ class MediaManager {
         savePanel.allowedFileTypes = [selectedExtension]
     }
 
-    func saveImage(_ image: NSImage?) {
+    func saveImage(_ image: NSImage) {
         if savePanel.runModal() == .OK {
             guard let selectedDirectory: String = savePanel.directoryURL?.path else { return }
             do {
-                try image?.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
+                try image.pngData?.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
+            } catch {
+                NSAlert(error: error).runModal()
+            }
+        }
+    }
+
+    func savePencilData(_ pdfData: Data) {
+        if savePanel.runModal() == .OK {
+            guard let selectedDirectory: String = savePanel.directoryURL?.path else { return }
+            do {
+                try pdfData.write(to: selectedDirectory, name: savePanel.nameFieldStringValue)
             } catch {
                 NSAlert(error: error).runModal()
             }

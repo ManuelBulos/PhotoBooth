@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Quartz
 
 /// Drawing Line
 struct Line {
@@ -51,5 +52,11 @@ extension Array where Element == Line {
     /// Draws lines in the current NSGraphicsContext
     func drawInCurrentContext() {
         self.forEach { $0.drawInCurrentContext() }
+    }
+
+    /// Maps points to svg file
+    func getSVGString() -> String {
+        let svgString: String = String()
+        return svgString
     }
 }

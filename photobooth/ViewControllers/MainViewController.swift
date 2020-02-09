@@ -120,6 +120,8 @@ class MainViewController: NSViewController {
 
     /// Tries to save current file
     internal func saveFile() {
-        MediaManager.shared.saveImage(imageEditorView.getFinalImageResult())
+        guard let pdfData = imageEditorView.getPhotoBoothDocument() else { return }
+        MediaManager.shared.savePencilData(pdfData)
+//        MediaManager.shared.saveImage(imageEditorView.getFinalImageResult())
     }
 }

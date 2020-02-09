@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Quartz
 
 /// NSView that supports drawing with the mouse
 class Canvas: NSView {
@@ -90,5 +91,13 @@ class Canvas: NSView {
         _ = self.lines.popLast()
         self.needsDisplay = true
         undosCounter += 1
+    }
+
+    func getSVGString() -> String {
+        self.lines.getSVGString()
+    }
+
+    func getPDFData() -> Data? {
+        return self.dataWithPDF(inside: self.visibleRect)
     }
 }

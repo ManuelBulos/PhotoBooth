@@ -25,6 +25,7 @@
 		FA2D44BC23EBC8AF00CCD009 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */; };
 		FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */; };
 		FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */; };
+		FAB808A123EFB12200977FD8 /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808A023EFB12200977FD8 /* PDFDocument.swift */; };
 		FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC70F623EE309C007E3DB0 /* MediaManager.swift */; };
 		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
 		FAD50B1023ED268600C304F2 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0F23ED268600C304F2 /* Line.swift */; };
@@ -60,6 +61,7 @@
 		FA2D44BB23EBC8AF00CCD009 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FA2D44BD23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraPreviewDelegate.swift"; sourceTree = "<group>"; };
 		FA2D44BF23EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CameraToolBarDelegate.swift"; sourceTree = "<group>"; };
+		FAB808A023EFB12200977FD8 /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
 		FABC70F623EE309C007E3DB0 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FAD50B0F23ED268600C304F2 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				FA2D44B523EBB61900CCD009 /* NSAlert.swift */,
 				FAD50B1123ED688700C304F2 /* NSEvent.swift */,
 				FA00293523EDF561001194E3 /* NSColorPanel.swift */,
+				FAB808A023EFB12200977FD8 /* PDFDocument.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,9 +229,11 @@
 				TargetAttributes = {
 					FA2D448723EB81E000CCD009 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					FA2D449923EB81E000CCD009 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = FA2D448723EB81E000CCD009;
 					};
 				};
@@ -289,6 +294,7 @@
 				FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */,
 				FAD50B1023ED268600C304F2 /* Line.swift in Sources */,
 				FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */,
+				FAB808A123EFB12200977FD8 /* PDFDocument.swift in Sources */,
 				FA2D44B623EBB61900CCD009 /* NSAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = photobooth/photobooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -457,6 +464,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.manuelbulos.photobooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -465,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = photobooth/photobooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -477,6 +487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.manuelbulos.photobooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -486,6 +497,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K9X4WQFDTP;
@@ -498,6 +510,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manuelbulos.photoboothTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "photobooth/Managers/photoboothTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photobooth.app/Contents/MacOS/photobooth";
 			};
@@ -508,6 +522,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K9X4WQFDTP;
@@ -520,6 +535,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manuelbulos.photoboothTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "photobooth/Managers/photoboothTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photobooth.app/Contents/MacOS/photobooth";
 			};
