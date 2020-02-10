@@ -10,12 +10,12 @@ Open photobooth.xcodeproj and hit run
 
 After capturing a snapshot you'll be presented with the editing window:
 
-![Editing](/photobooth/Resources/editing.png?raw=true)
+![Editing](/photobooth/Res/editing.png?raw=true)
 
 When you are finished editing you can choose to save your work as .png or a .photobooth file.
 If you choose .photobooth you can open up that file again and keep editing (undoing previous drawings and drawing new lines)
 
-![Saving](/photobooth/Resources/saving.png?raw=true)
+![Saving](/photobooth/Res/saving.png?raw=true)
 
 ## Technologies used
 ### Native
