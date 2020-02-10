@@ -15,6 +15,7 @@ class PencilData {
     /// Each Line object stores an array of CGPoints
     private(set) var lines: [Line] = [Line]()
 
+    /// Stores the CGSize of the canvas
     private(set) var canvasSize: CGSize?
 
     /// Returns true if lines array is empty
