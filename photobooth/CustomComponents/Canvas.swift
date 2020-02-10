@@ -72,7 +72,7 @@ class Canvas: NSView {
         self.needsDisplay = true
     }
 
-    // FIXME: Update context size (update lines scale)
+    // TODO: Update context size (update lines scale)
     override func layout() {
         super.layout()
         self.pencilData.setCanvasSize(self.frame.size)

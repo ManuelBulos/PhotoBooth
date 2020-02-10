@@ -47,10 +47,16 @@ class MediaManager {
         savePanel.allowedFileTypes = [selectedExtension]
     }
 
-    // FIXME: - Clean this code
-    func getPhotoBoothFileFrom(_ url: URL) -> PhotoBoothFile? {
+    // TODO: - Implement encapsulation
+    func getPhotoBoothFileFrom(_ photoBoothFileURL: URL) -> PhotoBoothFile? {
 
-        guard let url = URL(string: "file://")?.appendingPathComponent(url.absoluteString) else { return nil }
+        var url: URL = photoBoothFileURL
+
+        if !photoBoothFileURL.absoluteString.contains("file://") {
+            if let newURL = URL(string: "file://")?.appendingPathComponent(photoBoothFileURL.absoluteString) {
+                url = newURL
+            }
+        }
 
         var isDirectory: ObjCBool = false
 
@@ -112,7 +118,7 @@ class MediaManager {
         return nil
     }
 
-    // FIXME: - Clean this code
+    // TODO: - Implement encapsulation
     private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) {
         guard
             let selectedExtensionTitle: String = fileExtensionButton.selectedItem?.title,
@@ -124,16 +130,22 @@ class MediaManager {
         do {
             switch selectedExtension {
                 case .photobooth:
+                    // Create .photobooth directory
                     let newDirectoryURL = url.appendingPathComponent(plainName).appendingPathExtension(String.FileExtension.photobooth.stringValue)
                     try FileManager.default.createDirectory(at: newDirectoryURL,
                                                             withIntermediateDirectories: false,
                                                             attributes: [:])
+                    // Create svg file inside new directory
                     let xml = photoBoothFile.pencilData?.getSVGString()
                     try xml?.data(using: .utf8)?.write(to: newDirectoryURL.path, name: plainName.addExtension(.svg))
+
+                    // Create png file inside new directory
                     try photoBoothFile.image.pngData?.write(to: newDirectoryURL.path, name: plainName.addExtension(.png))
                 case .png:
-                    try photoBoothFile.image.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
+                    // Create png file (image with pencil data)
+                    try photoBoothFile.imageWithPencilData?.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
                 case .svg:
+                    // Create svg file
                     let xml = photoBoothFile.pencilData?.getSVGString()
                     try xml?.data(using: .utf8)?.write(to: url.path, name: plainName.addExtension(.svg))
             }

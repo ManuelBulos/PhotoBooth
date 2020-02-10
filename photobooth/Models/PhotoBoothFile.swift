@@ -14,9 +14,15 @@ class PhotoBoothFile: NSDocument {
 
     var pencilData: PencilData?
 
+    var imageWithPencilData: NSImage?
+
     init(image: NSImage, pencilData: PencilData? = nil) {
         self.image = image
         self.pencilData = pencilData
         super.init()
+    }
+
+    func setImageWithPencilData(_ image: NSImage) {
+        self.imageWithPencilData = image
     }
 }

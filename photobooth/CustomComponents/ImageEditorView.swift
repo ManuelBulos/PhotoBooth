@@ -59,6 +59,7 @@ class ImageEditorView: NSView {
 
     // MARK: - Public Functions
 
+    /// Sets the PhotoBoothFile
     func setPhotoBoothFile(_ photoBoothFile: PhotoBoothFile) {
         self.clearCanvas()
         self.imageView.image = photoBoothFile.image
@@ -68,9 +69,33 @@ class ImageEditorView: NSView {
         }
     }
 
+    /// Returns an PhotoBoothFile
     func getPhotoBoothFile() -> PhotoBoothFile? {
         guard let image = self.imageView.image else { return nil }
-        return PhotoBoothFile(image: image, pencilData: canvas.getPencilData())
+        let photoBoothFile = PhotoBoothFile(image: image, pencilData: canvas.getPencilData())
+        photoBoothFile.imageWithPencilData = imageWithDrawings()
+        return photoBoothFile
+    }
+
+    /// Returns an NSImage containing all the drawings
+    func imageWithDrawings() -> NSImage {
+        let mySize = bounds.size
+        let imgSize = NSMakeSize(mySize.width, mySize.height)
+
+        let bir = bitmapImageRepForCachingDisplay(in: bounds)
+        bir?.size = imgSize
+
+        if let bir = bir {
+            cacheDisplay(in: bounds, to: bir)
+        }
+
+        let image = NSImage(size: imgSize)
+
+        if let bir = bir {
+            image.addRepresentation(bir)
+        }
+
+        return image
     }
 
     /// Shows an NSColorPanel window
