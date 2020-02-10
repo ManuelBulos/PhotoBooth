@@ -17,7 +17,8 @@ class PhotoBoothFile: NSDocument {
     var imageWithPencilData: NSImage?
 
     var hasPencilData: Bool {
-        return self.pencilData?.lines.isEmpty ?? true
+        guard let containsLines = pencilData?.lines.isEmpty else { return false }
+        return !containsLines
     }
 
     init(image: NSImage, pencilData: PencilData? = nil) {

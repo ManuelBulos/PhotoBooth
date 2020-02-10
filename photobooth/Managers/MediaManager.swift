@@ -47,7 +47,22 @@ class MediaManager {
         savePanel.allowedFileTypes = [selectedExtension]
     }
 
-    // TODO: - Implement encapsulation
+    func openFile() -> PhotoBoothFile? {
+        if openPanel.runModal() == .OK {
+            guard let selectedFilePathURL: URL = openPanel.urls.first else { return nil }
+            return self.getPhotoBoothFileFrom(selectedFilePathURL)
+        }
+        return nil
+    }
+
+    func saveFile(_ photoBoothFile: PhotoBoothFile) {
+        if savePanel.runModal() == .OK {
+            guard let selectedDirectoryURL: URL = savePanel.directoryURL else { return }
+            self.savePhotoBoothFile(photoBoothFile, to: selectedDirectoryURL)
+        }
+    }
+
+    /// Loads package contents from a .photobooth directory or loads a png file
     func getPhotoBoothFileFrom(_ photoBoothFileURL: URL) -> PhotoBoothFile? {
 
         var url: URL = photoBoothFileURL
@@ -110,15 +125,7 @@ class MediaManager {
         return nil
     }
 
-    func openFile() -> PhotoBoothFile? {
-        if openPanel.runModal() == .OK {
-            guard let selectedFilePathURL: URL = openPanel.urls.first else { return nil }
-            return self.getPhotoBoothFileFrom(selectedFilePathURL)
-        }
-        return nil
-    }
-
-    // TODO: - Implement encapsulation
+    /// Saves PhotoBoothFile in a .png or a .photobooth package file
     private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) {
         guard
             let selectedExtensionTitle: String = fileExtensionButton.selectedItem?.title,
@@ -152,13 +159,6 @@ class MediaManager {
             }
         } catch {
             NSAlert(error: error).runModal()
-        }
-    }
-
-    func saveFile(_ photoBoothFile: PhotoBoothFile) {
-        if savePanel.runModal() == .OK {
-            guard let selectedDirectoryURL: URL = savePanel.directoryURL else { return }
-            self.savePhotoBoothFile(photoBoothFile, to: selectedDirectoryURL)
         }
     }
 }
