@@ -34,6 +34,8 @@ Mac apps can add new uniform type identifiers for proprietary data formats. You 
 
 This means that .photobooth is a directory (package) that contains 2 files: 
 - the image in a .png format
-- the svg file created from the CGPoints drawn inside the CGContext
+- the .svg file created from the CGPoints drawn inside the CGContext
 
 This way we can open the png image, then parse the svg into an array of CGPoints and draw them again on top of that image.
+
+I chose svg format because it's very easy to generate an XML file (SVG) from a given collection of CGPoints, we just need to map the x and y of each point to a [polyline element](https://www.w3schools.com/graphics/svg_polyline.asp) on the XML File.
