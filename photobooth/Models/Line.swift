@@ -36,8 +36,8 @@ struct Line {
             let xCoordinate: Float = Float(point.first ?? "") ?? .zero
             let yCoordinate: Float = Float(point.last ?? "") ?? .zero
 
-            // We need to add the height to the y coordinate to compensate for the svg mirroring
-            return CGPoint(x: CGFloat(xCoordinate), y: CGFloat(yCoordinate))
+            // We need to compensate for canvas heght and svg mirroring
+            return CGPoint(x: CGFloat(xCoordinate), y: CGFloat(canvasHeight - yCoordinate))
         }
 
         let style = polyline.attributes["style"]
