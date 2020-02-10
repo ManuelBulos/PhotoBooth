@@ -3,8 +3,10 @@
 # `SaveFileExtension`
 
 ```swift
-enum SaveFileExtension: String, CaseIterable
+enum SaveFileExtension: String, CaseIterable, FileExtensionProtocol
 ```
+
+> Supported file extensions for saving files
 
 ## Cases
 ### `png`
@@ -17,4 +19,11 @@ case png
 
 ```swift
 case photobooth
+```
+
+## Properties
+### `string`
+
+```swift
+var string: String
 ```

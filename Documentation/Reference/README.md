@@ -2,6 +2,7 @@
 
 -   [CameraPreviewDelegate](protocols/CameraPreviewDelegate.md)
 -   [CameraToolBarDelegate](protocols/CameraToolBarDelegate.md)
+-   [FileExtensionProtocol](protocols/FileExtensionProtocol.md)
 
 ## Structs
 
@@ -42,6 +43,8 @@
 -   [NSColorPanel](extensions/NSColorPanel.md)
 -   [NSEvent](extensions/NSEvent.md)
 -   [NSImage](extensions/NSImage.md)
+-   [PencilData](extensions/PencilData.md)
+-   [PhotoBoothFile](extensions/PhotoBoothFile.md)
 -   [String](extensions/String.md)
 
 # Reference Documentation

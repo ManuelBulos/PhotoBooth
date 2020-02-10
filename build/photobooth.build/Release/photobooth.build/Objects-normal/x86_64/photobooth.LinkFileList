@@ -1,4 +1,5 @@
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/MainViewController.o
+/Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/FileExtensionProtocol.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/PencilData.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Element.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Canvas.o
@@ -13,11 +14,13 @@
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/PhotoBoothFile.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/NSColorPanel.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Parser.o
+/Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/OpenFileExtension.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Options.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Notification.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/MainViewController+CameraToolBarDelegate.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/NSColor.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/MainViewController+CameraPreviewDelegate.o
+/Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/SaveFileExtension.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Line.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/MediaManager.o
 /Users/macbook/Desktop/photobooth/build/photobooth.build/Release/photobooth.build/Objects-normal/x86_64/Data.o

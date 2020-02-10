@@ -6,6 +6,8 @@
 class MediaManager
 ```
 
+> Singleton class to open and save files
+
 ## Properties
 ### `savePanel`
 
@@ -41,7 +43,7 @@ func openFile() -> PhotoBoothFile?
 ### `saveFile(_:)`
 
 ```swift
-func saveFile(_ photoBoothFile: PhotoBoothFile)
+func saveFile(_ photoBoothFile: PhotoBoothFile) -> URL?
 ```
 
 ### `getPhotoBoothFileFrom(_:)`
@@ -55,7 +57,7 @@ func getPhotoBoothFileFrom(_ photoBoothFileURL: URL) -> PhotoBoothFile?
 ### `savePhotoBoothFile(_:to:)`
 
 ```swift
-private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL)
+func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) -> URL?
 ```
 
-> Saves PhotoBoothFile in a .png or a .photobooth package file
+> Saves PhotoBoothFile in a .png or a .photobooth package file, returns the URL path

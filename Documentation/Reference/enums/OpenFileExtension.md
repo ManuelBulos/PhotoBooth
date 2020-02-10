@@ -3,8 +3,10 @@
 # `OpenFileExtension`
 
 ```swift
-enum OpenFileExtension: String, CaseIterable
+enum OpenFileExtension: String, CaseIterable, FileExtensionProtocol
 ```
+
+> Supported file extensions for opening files
 
 ## Cases
 ### `png`
@@ -23,4 +25,11 @@ case photobooth
 
 ```swift
 case svg
+```
+
+## Properties
+### `string`
+
+```swift
+var string: String
 ```

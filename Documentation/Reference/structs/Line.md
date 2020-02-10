@@ -3,7 +3,7 @@
 # `Line`
 
 ```swift
-struct Line
+struct Line: Equatable
 ```
 
 > Drawing Line

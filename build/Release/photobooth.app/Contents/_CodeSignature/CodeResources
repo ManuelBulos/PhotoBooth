@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Assets.car</key>
 		<data>
-		jurZktOGhWLqpS1BZ750eS/VCRw=
+		WmQeCCdyelwJY2bvOspcyKuM2E4=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
@@ -24,9 +24,17 @@
 		<data>
 		vJJ89wvKNtOvNNUNI88/T9M9Jps=
 		</data>
+		<key>Resources/editing.png</key>
+		<data>
+		70OrwYImpQS2v8LP0RAEzyCS6Uw=
+		</data>
 		<key>Resources/fileIcon.png</key>
 		<data>
 		5gKu8AoFO0inzMl5V935e3lPd/4=
+		</data>
+		<key>Resources/saving.png</key>
+		<data>
+		O2gMTyWj1CITB6ODp1qfUnKR6v8=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -107,7 +115,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OiVAn4CEsh4JmuZu9zwtd5cIziNMrLEUaCLOlKqyhmU=
+			S2ZN5fAyfLNlGHQ4HksXe5g+JD0cibcI5WRxF5EMtvg=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
@@ -138,11 +146,25 @@
 			/yC3Fv0i0oGFd1qPvqUQXr1VFxA4Q1vTKckbRPfD+K0=
 			</data>
 		</dict>
+		<key>Resources/editing.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			/k863zwJJplmrTjzIW4H8mcHKw1NWoXa6z1hFpPvsck=
+			</data>
+		</dict>
 		<key>Resources/fileIcon.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			Y32GcPUdfd5fdFT6TNRyCgg6B9IMAHtLccMYDawlZCc=
+			</data>
+		</dict>
+		<key>Resources/saving.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xyKHYdN135bRPNnJg4ywOUGR/2MBAKSwwQxAOyNuWlA=
 			</data>
 		</dict>
 	</dict>

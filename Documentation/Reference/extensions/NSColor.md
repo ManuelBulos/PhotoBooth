@@ -2,15 +2,20 @@
 
 # `NSColor`
 
+## Properties
+### `hexValue`
+
+```swift
+var hexValue: String
+```
+
+> Returns hex string (for example: "#FFFFFF")
+
 ## Methods
-### `init(hex:)`
+### `init(_:alpha:)`
 
 ```swift
-convenience init(hex: String)
+convenience init(_ hexValue: String, alpha: CGFloat = 1.0)
 ```
 
-### `hexString()`
-
-```swift
-func hexString() -> String
-```
+> Inits NSColor from hex string "#FFFFFF" or "FFFFFF"

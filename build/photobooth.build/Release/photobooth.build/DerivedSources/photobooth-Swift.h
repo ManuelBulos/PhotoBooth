@@ -299,14 +299,6 @@ SWIFT_CLASS("_TtC10photobooth18MainViewController")
 
 
 
-
-/// Object that stores all file types used in the app
-SWIFT_CLASS("_TtC10photobooth14PhotoBoothFile")
-@interface PhotoBoothFile : NSDocument
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
 #endif

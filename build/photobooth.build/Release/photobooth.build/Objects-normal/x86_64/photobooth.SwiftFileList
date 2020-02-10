@@ -1,4 +1,5 @@
 /Users/macbook/Desktop/photobooth/photobooth/ViewControllers/MainViewController.swift
+/Users/macbook/Desktop/photobooth/photobooth/Types/FileExtensionProtocol.swift
 /Users/macbook/Desktop/photobooth/photobooth/Models/PencilData.swift
 /Users/macbook/Desktop/photobooth/photobooth/Helpers/XMLParser/Element.swift
 /Users/macbook/Desktop/photobooth/photobooth/CustomComponents/Canvas.swift
@@ -13,11 +14,13 @@
 /Users/macbook/Desktop/photobooth/photobooth/Models/PhotoBoothFile.swift
 /Users/macbook/Desktop/photobooth/photobooth/Extensions/NSColorPanel.swift
 /Users/macbook/Desktop/photobooth/photobooth/Helpers/XMLParser/Parser.swift
+/Users/macbook/Desktop/photobooth/photobooth/Types/OpenFileExtension.swift
 /Users/macbook/Desktop/photobooth/photobooth/Helpers/XMLParser/Options.swift
 /Users/macbook/Desktop/photobooth/photobooth/Extensions/Notification.swift
 /Users/macbook/Desktop/photobooth/photobooth/ViewControllers/MainViewController+CameraToolBarDelegate.swift
 /Users/macbook/Desktop/photobooth/photobooth/Extensions/NSColor.swift
 /Users/macbook/Desktop/photobooth/photobooth/ViewControllers/MainViewController+CameraPreviewDelegate.swift
+/Users/macbook/Desktop/photobooth/photobooth/Types/SaveFileExtension.swift
 /Users/macbook/Desktop/photobooth/photobooth/Models/Line.swift
 /Users/macbook/Desktop/photobooth/photobooth/Managers/MediaManager.swift
 /Users/macbook/Desktop/photobooth/photobooth/Extensions/Data.swift

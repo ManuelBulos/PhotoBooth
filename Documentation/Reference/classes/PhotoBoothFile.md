@@ -3,7 +3,7 @@
 # `PhotoBoothFile`
 
 ```swift
-class PhotoBoothFile: NSDocument
+class PhotoBoothFile
 ```
 
 > Object that stores all file types used in the app
