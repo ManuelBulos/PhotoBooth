@@ -22,7 +22,7 @@
 				<string>com.manuelbulos.photobooth</string>
 			</array>
 			<key>NSDocumentClass</key>
-			<string>PhotoBoothFile</string>
+			<string>NSDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -67,6 +67,8 @@
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.composite-content</string>
+				<string>public.folder</string>
+				<string>public.directory</string>
 				<string>com.apple.package</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -77,6 +79,10 @@
 			<string>com.manuelbulos.photobooth</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>fold</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>photobooth</string>

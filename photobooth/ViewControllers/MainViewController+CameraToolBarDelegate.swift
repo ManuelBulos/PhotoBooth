@@ -9,31 +9,42 @@
 import Cocoa
 
 extension MainViewController: CameraToolBarDelegate {
+    /// Shows warning about losing all changes, if accepted it will take you back to the camera preview
     func newFileButtonClicked() {
-        self.createNewFile()
+        let userAcceptedWarning: Bool = self.newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        if userAcceptedWarning { self.showCameraPreview() }
     }
 
+    /// Tries to save current file
     func saveFileButtonClicked() {
-        self.saveFile()
+        guard let photoBoothFile: PhotoBoothFile = imageEditorView.getPhotoBoothFile() else { return }
+        MediaManager.shared.saveFile(photoBoothFile)
     }
 
+    /// Captures a still image from the current AVCapture Session
     func takeCameraSnapshotButtonClicked() {
-        self.takeSnapshot()
+        self.cameraPreview.takeSnapshot()
     }
 
+    /// Opens photobooth file selected by user
     func openFileButtonClicked() {
-        self.openFile()
+        guard let photoBoothFile = MediaManager.shared.openFile() else { return }
+        self.showImageEditorView(photoBoothFile: photoBoothFile)
     }
 
+    /// Undos last continuous pencil strike
     func undoButtonClicked() {
-        self.undoLastDrawing()
+        self.imageEditorView.undo()
     }
 
+    /// Shows warning about losing all changes, if accepted it will clear all drawings from canvas
     func clearCanvasButtonClicked() {
-        self.clearCanvas()
+        let userAcceptedWarning: Bool = self.newFileWarningAlert.runModal() == .alertFirstButtonReturn
+        if userAcceptedWarning { self.imageEditorView.clearCanvas() }
     }
 
+    /// Presents new window with a color picker
     func colorPickerButtonClicked() {
-        self.openColorPicker()
+        self.imageEditorView.openColorPicker()
     }
 }
