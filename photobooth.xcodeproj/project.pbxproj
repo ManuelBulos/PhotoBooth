@@ -138,7 +138,7 @@
 				FAB808AC23F0BD6300977FD8 /* Helpers */,
 				FABC70F523EE308E007E3DB0 /* Managers */,
 				FAD50B0E23ED266C00C304F2 /* Models */,
-				FAB808AA23F0952A00977FD8 /* Resources */,
+				FAB808AA23F0952A00977FD8 /* Res */,
 				FA2D44BA23EBB6B000CCD009 /* ViewControllers */,
 				FA2D448B23EB81E000CCD009 /* AppDelegate.swift */,
 				FA2D449123EB81E000CCD009 /* Main.storyboard */,
@@ -193,7 +193,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		FAB808AA23F0952A00977FD8 /* Resources */ = {
+		FAB808AA23F0952A00977FD8 /* Res */ = {
 			isa = PBXGroup;
 			children = (
 				FA2D448F23EB81E000CCD009 /* Assets.xcassets */,
@@ -201,7 +201,7 @@
 				FAA7A5BA23F17B0200A8A192 /* editing.png */,
 				FAA7A5BB23F17B0200A8A192 /* saving.png */,
 			);
-			path = Resources;
+			path = Res;
 			sourceTree = "<group>";
 		};
 		FAB808AC23F0BD6300977FD8 /* Helpers */ = {
