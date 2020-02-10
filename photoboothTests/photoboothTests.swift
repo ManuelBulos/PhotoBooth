@@ -13,7 +13,7 @@ import Quartz
 class photoboothTests: XCTestCase {
 
     /// String File Extensions
-    func testAddOpenFileExtension() {
+    func testAllOpenFileExtensions() {
         OpenFileExtension.allCases.forEach { (ext) in
             let fileName: String = "selfie"
             let fileNameWithExtension = fileName.addExtension(ext)
@@ -23,7 +23,7 @@ class photoboothTests: XCTestCase {
     }
 
     /// String File Extensions
-    func testAddSaveFileExtension() {
+    func testAllSaveFileExtensions() {
         SaveFileExtension.allCases.forEach { (ext) in
             let fileName: String = "selfie"
             let fileNameWithExtension = fileName.addExtension(ext)
@@ -35,8 +35,8 @@ class photoboothTests: XCTestCase {
     /// Hex string to NSColor and viceversa
     func testHexToColor() {
         let hexValue: String = "#99FF33"
-        let color: NSColor = NSColor(hex: hexValue)
-        XCTAssert(color.hexString() == hexValue)
+        let color: NSColor = NSColor(hexValue)
+        XCTAssert(color.hexValue == hexValue)
     }
 
     /// PencilData to SVG and viceversa
@@ -52,7 +52,7 @@ class photoboothTests: XCTestCase {
                                  CGPoint(x: 195, y: height - 115),
                                  CGPoint(x: 200, y: height - 120)]
 
-        let line: Line = Line(points: points, color: NSColor(hex: colorHex), width: strokeWidth)
+        let line: Line = Line(points: points, color: NSColor(colorHex), width: strokeWidth)
 
         pencilDataFromCode.addLine(line)
 
@@ -66,6 +66,25 @@ class photoboothTests: XCTestCase {
             XCTAssert(pencilDataFromSVG == pencilDataFromCode)
         } catch {
             XCTFail(error.localizedDescription)
+        }
+    }
+
+    /// Saving and reading .photobooth, .png and .svg files
+    func testSavingAndReadingFiles() {
+        let photoBoothFile = PhotoBoothFile(image: NSImage())
+
+        guard let path = MediaManager.shared.saveFile(photoBoothFile) else {
+            XCTFail("Failed to save file")
+            return
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            guard let retrievedPhotoBoothFile = MediaManager.shared.getPhotoBoothFileFrom(path) else {
+                XCTFail("Failed to retrieve file from \(path)")
+                return
+            }
+
+            XCTAssert(photoBoothFile == retrievedPhotoBoothFile)
         }
     }
 }

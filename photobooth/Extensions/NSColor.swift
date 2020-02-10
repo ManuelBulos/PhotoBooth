@@ -9,6 +9,7 @@
 import Cocoa
 
 extension NSColor {
+    /// Returns hex string (for example: "#FFFFFF")
     var hexValue: String {
         guard let rgbColor = usingColorSpace(.deviceRGB) else { return "#FFFFFF" }
         let red = Int(round(rgbColor.redComponent * 0xFF))
@@ -18,6 +19,7 @@ extension NSColor {
         return hexString as String
     }
 
+    /// Inits NSColor from hex string "#FFFFFF" or "FFFFFF"
     convenience init(_ hexValue: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexString)

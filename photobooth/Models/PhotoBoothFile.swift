@@ -36,3 +36,12 @@ class PhotoBoothFile {
         self.imageWithPencilData = image
     }
 }
+
+extension PhotoBoothFile: Equatable {
+    static func == (lhs: PhotoBoothFile, rhs: PhotoBoothFile) -> Bool {
+        return lhs.image == rhs.image &&
+            lhs.pencilData == rhs.pencilData &&
+            lhs.imageWithPencilData == rhs.imageWithPencilData &&
+            lhs.hasPencilData == rhs.hasPencilData
+    }
+}

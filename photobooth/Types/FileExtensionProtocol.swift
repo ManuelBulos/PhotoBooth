@@ -8,7 +8,7 @@
 
 import Foundation
 
+/// String representable
 protocol FileExtensionProtocol {
     var string: String { get }
 }
-

@@ -57,11 +57,13 @@ class MediaManager {
         return nil
     }
 
-    func saveFile(_ photoBoothFile: PhotoBoothFile) {
+    @discardableResult
+    func saveFile(_ photoBoothFile: PhotoBoothFile) -> URL? {
         if savePanel.runModal() == .OK {
-            guard let selectedDirectoryURL: URL = savePanel.directoryURL else { return }
-            self.savePhotoBoothFile(photoBoothFile, to: selectedDirectoryURL)
+            guard let selectedDirectoryURL: URL = savePanel.directoryURL else { return nil }
+            return self.savePhotoBoothFile(photoBoothFile, to: selectedDirectoryURL)
         }
+        return nil
     }
 
     /// Loads package contents from a .photobooth directory or loads a png file
@@ -127,12 +129,12 @@ class MediaManager {
         return nil
     }
 
-    /// Saves PhotoBoothFile in a .png or a .photobooth package file
-    private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) {
+    /// Saves PhotoBoothFile in a .png or a .photobooth package file, returns the URL path
+    func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) -> URL? {
         guard
             let selectedExtensionTitle: String = fileExtensionButton.selectedItem?.title,
             let selectedExtension: SaveFileExtension = SaveFileExtension(rawValue: selectedExtensionTitle)
-            else { return }
+            else { return nil }
 
         let plainName: String = String(savePanel.nameFieldStringValue.split(separator: ".").first ?? "UntitledPhotoBoothFile")
 
@@ -150,6 +152,8 @@ class MediaManager {
 
                     // Create png file inside new directory
                     try photoBoothFile.image.pngData?.write(to: newDirectoryURL.path, name: plainName.addExtension(OpenFileExtension.png))
+
+                    return newDirectoryURL
                 case .png:
                     if photoBoothFile.hasPencilData {
                         // Create png file from the image with pencil data
@@ -158,9 +162,12 @@ class MediaManager {
                         // create png file
                         try photoBoothFile.image.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
                     }
+                    return url.appendingPathComponent(savePanel.nameFieldStringValue)
             }
         } catch {
             NSAlert(error: error).runModal()
         }
+
+        return nil
     }
 }
