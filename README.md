@@ -21,10 +21,10 @@ If you choose .photobooth you can open up that file again and keep editing (undo
 ![Saving](/photobooth/Res/saving.png?raw=true)
 
 ## Technologies used
-### Native
+### Frameworks
 [AVFoundation](https://developer.apple.com/av-foundation/) used for previewing computer's camera.
 
-[CoreGraphics](https://developer.apple.com/documentation/coregraphics/cgcontext) used to handle path-based drawing
+[CoreGraphics](https://developer.apple.com/documentation/coregraphics/) used to handle path-based drawing
 
 ### Third Parties
 [AEXML](https://github.com/tadija/AEXML) lightweight XML parsing.
