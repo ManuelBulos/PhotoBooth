@@ -9,11 +9,30 @@
 import Foundation
 
 extension String {
+
+    enum FileExtension: String, CaseIterable {
+        case png
+        case photobooth
+        case svg
+
+        var stringValue: String {
+            return "\(self.rawValue)"
+        }
+
+        var stringValueWithDot: String {
+            return ".\(self.rawValue)"
+        }
+    }
+
     func slice(from: String, to: String) -> String? {
         return (range(of: from)?.upperBound).flatMap { substringFrom in
             (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
                 String(self[substringFrom..<substringTo])
             }
         }
+    }
+
+    func addExtension(_ ext: FileExtension) -> String {
+        return "\(self)\(ext.stringValueWithDot)"
     }
 }
