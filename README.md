@@ -46,5 +46,7 @@ I chose svg format because it's very easy to generate an XML file (SVG) from a g
 ## Unit Testing
 To run the unit tests just Open photobooth.xcodeproj and select the class photoboothTests in the [photoboothTests.swift](/photoboothTests/photoboothTests.swift) file
 
+IMPORTANT NOTE: the test named "testSavingAndReadingFiles" prompts you with a window, so make sure to select a directory from there.
+
 ## Docs Reference
 You can find more info about the project in the [documentation](/Documentation/Reference/README.md)
