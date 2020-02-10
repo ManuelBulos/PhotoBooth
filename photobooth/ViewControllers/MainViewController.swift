@@ -131,8 +131,8 @@ class MainViewController: NSViewController {
     /// Opens photobooth file selected by user
     internal func openFile() {
         guard let xml = MediaManager.shared.openSVGFile() else { return }
-        print(xml.svg.attributes["width"])
-//        guard let photoBoothFile: PhotoBoothFile = MediaManager.shared.openFile() else { return }
-//        showImageEditorView(photoBoothFile: photoBoothFile)
+        let pencilData = PencilData(xml: xml)
+        let photoBoothFile = PhotoBoothFile(image: NSImage(), pencilData: pencilData)
+        showImageEditorView(photoBoothFile: photoBoothFile)
     }
 }

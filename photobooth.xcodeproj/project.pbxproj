@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		FA00293623EDF561001194E3 /* NSColorPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00293523EDF561001194E3 /* NSColorPanel.swift */; };
+		FA2C807223F0C753009BFA34 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C806D23F0C753009BFA34 /* Element.swift */; };
+		FA2C807323F0C753009BFA34 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C806E23F0C753009BFA34 /* Error.swift */; };
+		FA2C807423F0C753009BFA34 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C806F23F0C753009BFA34 /* Parser.swift */; };
+		FA2C807523F0C753009BFA34 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C807023F0C753009BFA34 /* Options.swift */; };
+		FA2C807623F0C753009BFA34 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C807123F0C753009BFA34 /* Document.swift */; };
+		FA2C807823F0D269009BFA34 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C807723F0D269009BFA34 /* NSColor.swift */; };
+		FA2C807A23F0E387009BFA34 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C807923F0E387009BFA34 /* String.swift */; };
 		FA2D448C23EB81E000CCD009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D448B23EB81E000CCD009 /* AppDelegate.swift */; };
 		FA2D449023EB81E000CCD009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA2D448F23EB81E000CCD009 /* Assets.xcassets */; };
 		FA2D449323EB81E000CCD009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA2D449123EB81E000CCD009 /* Main.storyboard */; };
@@ -29,11 +36,6 @@
 		FAB808A523EFEA6700977FD8 /* PencilData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808A423EFEA6700977FD8 /* PencilData.swift */; };
 		FAB808A723EFEC9C00977FD8 /* PhotoBoothFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808A623EFEC9C00977FD8 /* PhotoBoothFile.swift */; };
 		FAB808A923F0952200977FD8 /* fileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB808A823F0952200977FD8 /* fileIcon.png */; };
-		FAB808B323F0BD7700977FD8 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808AE23F0BD7700977FD8 /* Element.swift */; };
-		FAB808B423F0BD7700977FD8 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808AF23F0BD7700977FD8 /* Parser.swift */; };
-		FAB808B523F0BD7700977FD8 /* XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808B023F0BD7700977FD8 /* XML.swift */; };
-		FAB808B623F0BD7700977FD8 /* Accessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808B123F0BD7700977FD8 /* Accessor.swift */; };
-		FAB808B723F0BD7700977FD8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB808B223F0BD7700977FD8 /* Error.swift */; };
 		FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC70F623EE309C007E3DB0 /* MediaManager.swift */; };
 		FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0C23ED186B00C304F2 /* Canvas.swift */; };
 		FAD50B1023ED268600C304F2 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD50B0F23ED268600C304F2 /* Line.swift */; };
@@ -52,6 +54,13 @@
 
 /* Begin PBXFileReference section */
 		FA00293523EDF561001194E3 /* NSColorPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorPanel.swift; sourceTree = "<group>"; };
+		FA2C806D23F0C753009BFA34 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		FA2C806E23F0C753009BFA34 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		FA2C806F23F0C753009BFA34 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		FA2C807023F0C753009BFA34 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		FA2C807123F0C753009BFA34 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		FA2C807723F0D269009BFA34 /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
+		FA2C807923F0E387009BFA34 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA2D448823EB81E000CCD009 /* photobooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2D448B23EB81E000CCD009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA2D448F23EB81E000CCD009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,11 +82,6 @@
 		FAB808A423EFEA6700977FD8 /* PencilData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilData.swift; sourceTree = "<group>"; };
 		FAB808A623EFEC9C00977FD8 /* PhotoBoothFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBoothFile.swift; sourceTree = "<group>"; };
 		FAB808A823F0952200977FD8 /* fileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fileIcon.png; sourceTree = "<group>"; };
-		FAB808AE23F0BD7700977FD8 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		FAB808AF23F0BD7700977FD8 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		FAB808B023F0BD7700977FD8 /* XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XML.swift; sourceTree = "<group>"; };
-		FAB808B123F0BD7700977FD8 /* Accessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessor.swift; sourceTree = "<group>"; };
-		FAB808B223F0BD7700977FD8 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		FABC70F623EE309C007E3DB0 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		FAD50B0C23ED186B00C304F2 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FAD50B0F23ED268600C304F2 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
@@ -154,7 +158,9 @@
 				FA2D44A923EB823300CCD009 /* NSImage.swift */,
 				FA2D44B523EBB61900CCD009 /* NSAlert.swift */,
 				FAD50B1123ED688700C304F2 /* NSEvent.swift */,
+				FA2C807723F0D269009BFA34 /* NSColor.swift */,
 				FA00293523EDF561001194E3 /* NSColorPanel.swift */,
+				FA2C807923F0E387009BFA34 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,11 +206,11 @@
 		FAB808AD23F0BD6C00977FD8 /* XMLParser */ = {
 			isa = PBXGroup;
 			children = (
-				FAB808B123F0BD7700977FD8 /* Accessor.swift */,
-				FAB808AE23F0BD7700977FD8 /* Element.swift */,
-				FAB808B223F0BD7700977FD8 /* Error.swift */,
-				FAB808AF23F0BD7700977FD8 /* Parser.swift */,
-				FAB808B023F0BD7700977FD8 /* XML.swift */,
+				FA2C807123F0C753009BFA34 /* Document.swift */,
+				FA2C806D23F0C753009BFA34 /* Element.swift */,
+				FA2C806E23F0C753009BFA34 /* Error.swift */,
+				FA2C807023F0C753009BFA34 /* Options.swift */,
+				FA2C806F23F0C753009BFA34 /* Parser.swift */,
 			);
 			path = XMLParser;
 			sourceTree = "<group>";
@@ -332,26 +338,28 @@
 			files = (
 				FA2D44BC23EBC8AF00CCD009 /* MainViewController.swift in Sources */,
 				FAB808A523EFEA6700977FD8 /* PencilData.swift in Sources */,
-				FAB808B323F0BD7700977FD8 /* Element.swift in Sources */,
+				FA2C807223F0C753009BFA34 /* Element.swift in Sources */,
 				FAD50B0D23ED186B00C304F2 /* Canvas.swift in Sources */,
+				FA2C807623F0C753009BFA34 /* Document.swift in Sources */,
 				FA2D44AF23EB823300CCD009 /* ImageEditorView.swift in Sources */,
-				FAB808B523F0BD7700977FD8 /* XML.swift in Sources */,
+				FA2C807A23F0E387009BFA34 /* String.swift in Sources */,
 				FA2D44B123EB823300CCD009 /* CameraToolBar.swift in Sources */,
 				FA2D44B323EB823300CCD009 /* CameraPreview.swift in Sources */,
 				FA2D44AD23EB823300CCD009 /* NSImage.swift in Sources */,
 				FA2D448C23EB81E000CCD009 /* AppDelegate.swift in Sources */,
 				FAD50B1223ED688700C304F2 /* NSEvent.swift in Sources */,
-				FAB808B623F0BD7700977FD8 /* Accessor.swift in Sources */,
 				FAB808A723EFEC9C00977FD8 /* PhotoBoothFile.swift in Sources */,
 				FA00293623EDF561001194E3 /* NSColorPanel.swift in Sources */,
-				FAB808B723F0BD7700977FD8 /* Error.swift in Sources */,
+				FA2C807423F0C753009BFA34 /* Parser.swift in Sources */,
+				FA2C807523F0C753009BFA34 /* Options.swift in Sources */,
 				FA2D44C023EBC91400CCD009 /* MainViewController+CameraToolBarDelegate.swift in Sources */,
+				FA2C807823F0D269009BFA34 /* NSColor.swift in Sources */,
 				FA2D44BE23EBC8D500CCD009 /* MainViewController+CameraPreviewDelegate.swift in Sources */,
 				FAD50B1023ED268600C304F2 /* Line.swift in Sources */,
-				FAB808B423F0BD7700977FD8 /* Parser.swift in Sources */,
 				FABC70F723EE309C007E3DB0 /* MediaManager.swift in Sources */,
 				FAB808A123EFB12200977FD8 /* Data.swift in Sources */,
 				FA2D44B623EBB61900CCD009 /* NSAlert.swift in Sources */,
+				FA2C807323F0C753009BFA34 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,9 +20,42 @@ struct Line {
 
     // MARK: - Life Cycle
 
-//    init(polyline: String) {
-//
-//    }
+    init(points: [CGPoint], color: NSColor, width: CGFloat) {
+        self.points = points
+        self.color = color
+        self.width = width
+    }
+
+    init?(polyline: AEXMLElement, canvasHeight: Float) {
+        guard let points = polyline.attributes["points"] else { return nil }
+
+        let stringArray = points.split(separator: " ").compactMap { String($0) }
+
+        let pointsArray = stringArray.compactMap { (string) -> CGPoint in
+            let point = string.split(separator: ",")
+            let xCoordinate: Float = Float(point.first ?? "") ?? .zero
+            let yCoordinate: Float = Float(point.last ?? "") ?? .zero
+
+            // We need to add the height to the y coordinate to compensate for the svg mirroring
+            return CGPoint(x: CGFloat(xCoordinate), y: CGFloat(yCoordinate))
+        }
+
+        let style = polyline.attributes["style"]
+
+        var color: NSColor = .black
+
+        var lineWidth: Float = 10
+
+        if let hexColor: String = style?.slice(from: "#", to: ";") {
+            color = NSColor(hex: hexColor)
+        }
+
+        if let stringWidth: String = style?.slice(from: "stroke-width:", to: ";") {
+            lineWidth = Float(stringWidth) ?? lineWidth
+        }
+
+        self.init(points: pointsArray, color: color, width: CGFloat(lineWidth))
+    }
 
     // MARK: - Functions
 

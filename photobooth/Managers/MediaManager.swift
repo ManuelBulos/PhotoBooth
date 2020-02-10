@@ -79,12 +79,12 @@ class MediaManager {
 //        return nil
 //    }
 
-    func openSVGFile() -> XML.Accessor? {
+    func openSVGFile() -> AEXMLDocument? {
         if openPanel.runModal() == .OK {
             guard let selectedFilePath: URL = openPanel.urls.first else { return nil }
             do {
                 let data = try Data(contentsOf: selectedFilePath)
-                return XML.parse(data)
+                return try AEXMLDocument(xml: data)
             } catch {
                 NSAlert(error: error).runModal()
             }

@@ -22,6 +22,24 @@ class PencilData {
         return lines.isEmpty
     }
 
+    init() {
+        self.lines = [Line]()
+    }
+
+    init(xml: AEXMLDocument) {
+        let svg = xml.root.attributes
+        let width = Float(svg["width"] ?? "") ?? .zero
+        let height = Float(svg["height"] ?? "") ?? .zero
+        self.canvasSize = CGSize(width: CGFloat(width), height: CGFloat(height))
+
+        if let polylines = xml.root["polyline"].all {
+            for polyline in polylines {
+                guard let line = Line(polyline: polyline, canvasHeight: height) else { continue }
+                self.lines.append(line)
+            }
+        }
+    }
+
     /// Adds a new line to the array
     func addLine(_ line: Line) {
         self.lines.append(line)
@@ -64,7 +82,9 @@ class PencilData {
         for line in lines {
             // for each ("continuous") line we create a new polyline point
             let allPoints: String = line.points.map({ "\($0.x),\(size.height - $0.y)" }).joined(separator: " ")
-            let polyline: String = "<polyline points=\"\(allPoints)\" style=\"fill:none;stroke:black;stroke-width:3\"/>"
+            let strokeColor: String = line.color.hexString()
+            let strokeWidth: String = "\(line.width)"
+            let polyline: String = "<polyline points=\"\(allPoints)\" style=\"fill:none;stroke:\(strokeColor);stroke-width:\(strokeWidth);\"/>"
             polylines.append(polyline)
         }
 
