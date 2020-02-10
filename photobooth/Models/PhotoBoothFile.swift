@@ -16,6 +16,10 @@ class PhotoBoothFile: NSDocument {
 
     var imageWithPencilData: NSImage?
 
+    var hasPencilData: Bool {
+        return self.pencilData?.lines.isEmpty ?? true
+    }
+
     init(image: NSImage, pencilData: PencilData? = nil) {
         self.image = image
         self.pencilData = pencilData

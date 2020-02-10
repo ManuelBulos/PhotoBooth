@@ -10,18 +10,15 @@ import Foundation
 
 extension String {
 
-    enum FileExtension: String, CaseIterable {
+    enum SaveFileExtension: String, CaseIterable {
+        case png
+        case photobooth
+    }
+
+    enum OpenFileExtension: String, CaseIterable {
         case png
         case photobooth
         case svg
-
-        var stringValue: String {
-            return "\(self.rawValue)"
-        }
-
-        var stringValueWithDot: String {
-            return ".\(self.rawValue)"
-        }
     }
 
     func slice(from: String, to: String) -> String? {
@@ -32,7 +29,7 @@ extension String {
         }
     }
 
-    func addExtension(_ ext: FileExtension) -> String {
-        return "\(self)\(ext.stringValueWithDot)"
+    func addExtension(_ ext: OpenFileExtension) -> String {
+        return "\(self).\(ext.rawValue)"
     }
 }

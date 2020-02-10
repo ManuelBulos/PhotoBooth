@@ -79,14 +79,14 @@ class ImageEditorView: NSView {
 
     /// Returns an NSImage containing all the drawings
     func imageWithDrawings() -> NSImage {
-        let mySize = bounds.size
+        let mySize = self.imageView.bounds.size
         let imgSize = NSMakeSize(mySize.width, mySize.height)
 
-        let bir = bitmapImageRepForCachingDisplay(in: bounds)
+        let bir = bitmapImageRepForCachingDisplay(in: self.imageView.bounds)
         bir?.size = imgSize
 
         if let bir = bir {
-            cacheDisplay(in: bounds, to: bir)
+            cacheDisplay(in: self.imageView.bounds, to: bir)
         }
 
         let image = NSImage(size: imgSize)

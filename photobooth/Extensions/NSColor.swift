@@ -22,10 +22,23 @@ extension NSColor {
     }
 
     func hexString() -> String {
-        let components = self.cgColor.components
-        let r: CGFloat = components?[0] ?? 0.0
-        let g: CGFloat = components?[1] ?? 0.0
-        let b: CGFloat = components?[2] ?? 0.0
+        guard let components = self.cgColor.components else { return String() }
+
+        var r: CGFloat = 0.0
+        var g: CGFloat = 0.0
+        var b: CGFloat = 0.0
+
+        if components.count >= 1 {
+            r = components[0]
+        }
+
+        if components.count >= 2 {
+            g = components[1]
+        }
+
+        if components.count >= 3 {
+            b = components[2]
+        }
 
         let hexString = String(format: "#%02lX%02lX%02lX",
                                lroundf(Float(r * 255)),

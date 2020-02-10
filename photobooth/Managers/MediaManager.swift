@@ -16,21 +16,21 @@ class MediaManager {
     private lazy var savePanel: NSSavePanel = {
         let savePanel = NSSavePanel()
         savePanel.accessoryView = fileExtensionButton
-        savePanel.allowedFileTypes = [String.FileExtension.png.stringValue]
+        savePanel.allowedFileTypes = String.SaveFileExtension.allCases.map({ $0.rawValue })
         savePanel.allowsOtherFileTypes = false
         return savePanel
     }()
 
     private lazy var openPanel: NSOpenPanel = {
         let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = String.FileExtension.allCases.map({ $0.stringValue })
+        openPanel.allowedFileTypes = String.OpenFileExtension.allCases.map({ $0.rawValue })
         openPanel.canChooseDirectories = true
         return openPanel
     }()
 
     private lazy var fileExtensionButton: NSPopUpButton = {
         let fileExtensionButton = NSPopUpButton()
-        fileExtensionButton.addItems(withTitles: String.FileExtension.allCases.map { $0.stringValue } )
+        fileExtensionButton.addItems(withTitles: String.SaveFileExtension.allCases.map { $0.rawValue } )
         fileExtensionButton.action = #selector(selectedExtensionChanged)
         fileExtensionButton.target = self
         return fileExtensionButton
@@ -67,11 +67,11 @@ class MediaManager {
 
             guard
                 let imagePath = subPaths?.first(where: { (path) -> Bool in
-                    return path.hasSuffix(String.FileExtension.png.stringValueWithDot)
+                    return path.hasSuffix(".\(String.OpenFileExtension.png.rawValue)")
                 }),
 
                 let svgPath = subPaths?.first(where: { (path) -> Bool in
-                    return path.hasSuffix(String.FileExtension.svg.stringValueWithDot)
+                    return path.hasSuffix(".\(String.OpenFileExtension.svg.rawValue)")
                 })
 
                 else { return nil }
@@ -93,7 +93,7 @@ class MediaManager {
             }
         } else {
             do {
-                if url.pathExtension == String.FileExtension.png.stringValue {
+                if url.pathExtension == String.OpenFileExtension.png.rawValue {
                     let data = try Data(contentsOf: url)
                     let image = NSImage(data: data) ?? NSImage()
                     return PhotoBoothFile(image: image)
@@ -122,7 +122,7 @@ class MediaManager {
     private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) {
         guard
             let selectedExtensionTitle: String = fileExtensionButton.selectedItem?.title,
-            let selectedExtension: String.FileExtension = String.FileExtension(rawValue: selectedExtensionTitle)
+            let selectedExtension: String.SaveFileExtension = String.SaveFileExtension(rawValue: selectedExtensionTitle)
             else { return }
 
         let plainName: String = String(savePanel.nameFieldStringValue.split(separator: ".").first ?? "UntitledPhotoBoothFile")
@@ -131,7 +131,7 @@ class MediaManager {
             switch selectedExtension {
                 case .photobooth:
                     // Create .photobooth directory
-                    let newDirectoryURL = url.appendingPathComponent(plainName).appendingPathExtension(String.FileExtension.photobooth.stringValue)
+                    let newDirectoryURL = url.appendingPathComponent(plainName).appendingPathExtension(String.SaveFileExtension.photobooth.rawValue)
                     try FileManager.default.createDirectory(at: newDirectoryURL,
                                                             withIntermediateDirectories: false,
                                                             attributes: [:])
@@ -142,12 +142,13 @@ class MediaManager {
                     // Create png file inside new directory
                     try photoBoothFile.image.pngData?.write(to: newDirectoryURL.path, name: plainName.addExtension(.png))
                 case .png:
-                    // Create png file (image with pencil data)
-                    try photoBoothFile.imageWithPencilData?.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
-                case .svg:
-                    // Create svg file
-                    let xml = photoBoothFile.pencilData?.getSVGString()
-                    try xml?.data(using: .utf8)?.write(to: url.path, name: plainName.addExtension(.svg))
+                    if photoBoothFile.hasPencilData {
+                        // Create png file from the image with pencil data
+                        try photoBoothFile.imageWithPencilData?.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
+                    } else {
+                        // create png file
+                        try photoBoothFile.image.pngData?.write(to: url.path, name: savePanel.nameFieldStringValue)
+                    }
             }
         } catch {
             NSAlert(error: error).runModal()
