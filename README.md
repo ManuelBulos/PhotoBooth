@@ -2,7 +2,10 @@
 MacOS App Coding Exercise
 
 ## Install
+Download the project or run:
+```console
 $ git clone https://github.com/ManuelBulos/PhotoBooth.git
+```
 
 ## Run
 Open photobooth.xcodeproj and hit run
