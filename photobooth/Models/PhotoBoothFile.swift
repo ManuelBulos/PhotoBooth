@@ -9,7 +9,7 @@
 import Cocoa
 
 /// Object that stores all file types used in the app
-class PhotoBoothFile: NSDocument {
+class PhotoBoothFile {
 
     /// Unedited NSImage
     var image: NSImage
@@ -29,7 +29,6 @@ class PhotoBoothFile: NSDocument {
     init(image: NSImage, pencilData: PencilData? = nil) {
         self.image = image
         self.pencilData = pencilData
-        super.init()
     }
 
     /// Stores the image with drawing data

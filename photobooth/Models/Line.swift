@@ -10,7 +10,7 @@ import Cocoa
 import Quartz
 
 /// Drawing Line
-struct Line {
+struct Line: Equatable {
 
     // MARK: - Properties
 
@@ -47,7 +47,7 @@ struct Line {
         var lineWidth: Float = 10
 
         if let hexColor: String = style?.slice(from: "#", to: ";") {
-            color = NSColor(hex: hexColor)
+            color = NSColor(hexColor)
         }
 
         if let stringWidth: String = style?.slice(from: "stroke-width:", to: ";") {

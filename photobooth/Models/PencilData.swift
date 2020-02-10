@@ -31,7 +31,7 @@ class PencilData {
         let svg = xml.root.attributes
         let width = Float(svg["width"] ?? "") ?? .zero
         let height = Float(svg["height"] ?? "") ?? .zero
-        self.canvasSize = CGSize(width: CGFloat(width), height: CGFloat(height))
+        self.setCanvasSize(CGSize(width: CGFloat(width), height: CGFloat(height)))
 
         if let polylines = xml.root["polyline"].all {
             for polyline in polylines {
@@ -83,7 +83,7 @@ class PencilData {
         for line in lines {
             // for each ("continuous") line we create a new polyline point
             let allPoints: String = line.points.map({ "\($0.x),\(size.height - $0.y)" }).joined(separator: " ")
-            let strokeColor: String = line.color.hexString()
+            let strokeColor: String = line.color.hexValue
             let strokeWidth: String = "\(line.width)"
             let polyline: String = "<polyline points=\"\(allPoints)\" style=\"fill:none;stroke:\(strokeColor);stroke-width:\(strokeWidth);\"/>"
             polylines.append(polyline)
@@ -99,5 +99,11 @@ class PencilData {
         """
 
         return svg
+    }
+}
+
+extension PencilData: Equatable {
+    static func == (lhs: PencilData, rhs: PencilData) -> Bool {
+        return lhs.lines == rhs.lines && lhs.canvasSize == rhs.canvasSize
     }
 }

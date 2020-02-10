@@ -9,6 +9,7 @@
 import Cocoa
 import Quartz
 
+/// Singleton class to open and save files
 class MediaManager {
 
     // MARK: - UI Elements
@@ -16,21 +17,21 @@ class MediaManager {
     private lazy var savePanel: NSSavePanel = {
         let savePanel = NSSavePanel()
         savePanel.accessoryView = fileExtensionButton
-        savePanel.allowedFileTypes = String.SaveFileExtension.allCases.map({ $0.rawValue })
+        savePanel.allowedFileTypes = SaveFileExtension.allCases.map({ $0.rawValue })
         savePanel.allowsOtherFileTypes = false
         return savePanel
     }()
 
     private lazy var openPanel: NSOpenPanel = {
         let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = String.OpenFileExtension.allCases.map({ $0.rawValue })
+        openPanel.allowedFileTypes = OpenFileExtension.allCases.map({ $0.rawValue })
         openPanel.canChooseDirectories = true
         return openPanel
     }()
 
     private lazy var fileExtensionButton: NSPopUpButton = {
         let fileExtensionButton = NSPopUpButton()
-        fileExtensionButton.addItems(withTitles: String.SaveFileExtension.allCases.map { $0.rawValue } )
+        fileExtensionButton.addItems(withTitles: SaveFileExtension.allCases.map { $0.rawValue } )
         fileExtensionButton.action = #selector(selectedExtensionChanged)
         fileExtensionButton.target = self
         return fileExtensionButton
@@ -38,6 +39,7 @@ class MediaManager {
 
     // MARK: - Public Properties
 
+    /// Singleton
     static var shared: MediaManager = MediaManager()
 
     // MARK: - Functions
@@ -82,11 +84,11 @@ class MediaManager {
 
             guard
                 let imagePath = subPaths?.first(where: { (path) -> Bool in
-                    return path.hasSuffix(".\(String.OpenFileExtension.png.rawValue)")
+                    return path.hasSuffix(OpenFileExtension.png.string)
                 }),
 
                 let svgPath = subPaths?.first(where: { (path) -> Bool in
-                    return path.hasSuffix(".\(String.OpenFileExtension.svg.rawValue)")
+                    return path.hasSuffix(OpenFileExtension.svg.string)
                 })
 
                 else { return nil }
@@ -108,7 +110,7 @@ class MediaManager {
             }
         } else {
             do {
-                if url.pathExtension == String.OpenFileExtension.png.rawValue {
+                if url.pathExtension == OpenFileExtension.png.rawValue {
                     let data = try Data(contentsOf: url)
                     let image = NSImage(data: data) ?? NSImage()
                     return PhotoBoothFile(image: image)
@@ -129,7 +131,7 @@ class MediaManager {
     private func savePhotoBoothFile(_ photoBoothFile: PhotoBoothFile, to url: URL) {
         guard
             let selectedExtensionTitle: String = fileExtensionButton.selectedItem?.title,
-            let selectedExtension: String.SaveFileExtension = String.SaveFileExtension(rawValue: selectedExtensionTitle)
+            let selectedExtension: SaveFileExtension = SaveFileExtension(rawValue: selectedExtensionTitle)
             else { return }
 
         let plainName: String = String(savePanel.nameFieldStringValue.split(separator: ".").first ?? "UntitledPhotoBoothFile")
@@ -138,16 +140,16 @@ class MediaManager {
             switch selectedExtension {
                 case .photobooth:
                     // Create .photobooth directory
-                    let newDirectoryURL = url.appendingPathComponent(plainName).appendingPathExtension(String.SaveFileExtension.photobooth.rawValue)
+                    let newDirectoryURL = url.appendingPathComponent(plainName).appendingPathExtension(SaveFileExtension.photobooth.rawValue)
                     try FileManager.default.createDirectory(at: newDirectoryURL,
                                                             withIntermediateDirectories: false,
                                                             attributes: [:])
                     // Create svg file inside new directory
                     let xml = photoBoothFile.pencilData?.getSVGString()
-                    try xml?.data(using: .utf8)?.write(to: newDirectoryURL.path, name: plainName.addExtension(.svg))
+                    try xml?.data(using: .utf8)?.write(to: newDirectoryURL.path, name: plainName.addExtension(OpenFileExtension.svg))
 
                     // Create png file inside new directory
-                    try photoBoothFile.image.pngData?.write(to: newDirectoryURL.path, name: plainName.addExtension(.png))
+                    try photoBoothFile.image.pngData?.write(to: newDirectoryURL.path, name: plainName.addExtension(OpenFileExtension.png))
                 case .png:
                     if photoBoothFile.hasPencilData {
                         // Create png file from the image with pencil data

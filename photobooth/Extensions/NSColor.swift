@@ -9,56 +9,30 @@
 import Cocoa
 
 extension NSColor {
-    convenience init(hex: String) {
-        var colorString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-        colorString = colorString.replacingOccurrences(of: "#", with: "").uppercased()
-
-        let alpha: CGFloat = 1.0
-        let red: CGFloat = colorString.colorComponent(start: 0, length: 2)
-        let green: CGFloat = colorString.colorComponent(start: 2, length: 2)
-        let blue: CGFloat = colorString.colorComponent(start: 4, length: 2)
-
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    var hexValue: String {
+        guard let rgbColor = usingColorSpace(.deviceRGB) else { return "#FFFFFF" }
+        let red = Int(round(rgbColor.redComponent * 0xFF))
+        let green = Int(round(rgbColor.greenComponent * 0xFF))
+        let blue = Int(round(rgbColor.blueComponent * 0xFF))
+        let hexString = NSString(format: "#%02X%02X%02X", red, green, blue)
+        return hexString as String
     }
 
-    func hexString() -> String {
-        guard let components = self.cgColor.components else { return String() }
-
-        var r: CGFloat = 0.0
-        var g: CGFloat = 0.0
-        var b: CGFloat = 0.0
-
-        if components.count >= 1 {
-            r = components[0]
+    convenience init(_ hexValue: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
         }
-
-        if components.count >= 2 {
-            g = components[1]
-        }
-
-        if components.count >= 3 {
-            b = components[2]
-        }
-
-        let hexString = String(format: "#%02lX%02lX%02lX",
-                               lroundf(Float(r * 255)),
-                               lroundf(Float(g * 255)),
-                               lroundf(Float(b * 255)))
-        return hexString
-    }
-}
-
-private extension String {
-    func colorComponent(start: Int, length: Int) -> CGFloat {
-        let startIndex = self.index(self.startIndex, offsetBy: start)
-        let endIndex = self.index(startIndex, offsetBy: length)
-        let subString = self[startIndex..<endIndex]
-        let fullHexString = length == 2 ? subString : "\(subString)\(subString)"
-        var hexComponent: UInt32 = 0
-
-        guard Scanner(string: String(fullHexString)).scanHexInt32(&hexComponent) else { return 0 }
-        let hexFloat: CGFloat = CGFloat(hexComponent)
-        let floatValue: CGFloat = CGFloat(hexFloat / 255.0)
-        return floatValue
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
 }
