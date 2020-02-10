@@ -47,18 +47,22 @@ class MainViewController: NSViewController {
 
     private let mainViewAspectRatio: CGFloat = 1.35
 
-    // MARK: - Public Properties
-
-
     // MARK: - Life Cycle Functions
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .onClickedPhotoBoothFile,
+                                                  object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(stackView)
-
+        self.view.addSubview(stackView)
         self.showCameraPreview()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(onClickedPhotoBoothFile(_:)), name: .onClickedPhotoBoothFile, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onClickedPhotoBoothFile(_:)),
+                                               name: .onClickedPhotoBoothFile,
+                                               object: nil)
     }
 
     override func updateViewConstraints() {
